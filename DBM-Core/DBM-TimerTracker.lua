@@ -1,3 +1,4 @@
+local AceAddon, AceAddonMinor = LibStub("AceAddon-3.0")
 local CallbackHandler = LibStub("CallbackHandler-1.0")
 local AddOn = LibStub("AceAddon-3.0"):NewAddon("DBM-TimerTracker", "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "AceHook-3.0")
 AddOn.callbacks = AddOn.callbacks or CallbackHandler:New(AddOn)
@@ -5,29 +6,14 @@ TT = AddOn:NewModule("Enhanced_TimerTracker", "AceHook-3.0", "AceEvent-3.0")
 AddOn.RegisteredModules = {}
 AddOn.RegisteredInitialModules = {}
 local ipairs = ipairs
+local tonumber = tonumber
 local unpack = unpack
 local floor, fmod, modf = math.floor, math.fmod, math.modf
-local LSM = LibStub("LibSharedMedia-3.0")
+local L = DBM_CORE_L
+local LSM = DBM.LSM
 local GetTime = GetTime
-local GetBattlefieldScore, GetNumBattlefieldScores, GetUnitName, UnitFactionGroup = GetBattlefieldScore, GetNumBattlefieldScores, GetUnitName, UnitFactionGroup
-local function GetBattlefieldFaction(unit) -- workaround to detect faction in Cross-Faction BG
-	if not unit then return UnitFactionGroup("player") end
-	local numScores = GetNumBattlefieldScores()
-	if numScores == 0 then return UnitFactionGroup("player")
-	else
-		local unitName = GetUnitName(unit, true)
-		for i = 1, numScores do
-			local name, _, _, _, _, faction = GetBattlefieldScore(i)
-			if name == unitName then
-				if faction == 0 then
-					return "Horde"
-				else
-					return "Alliance"
-				end
-			end
-		end
-	end
-end
+local UnitFactionGroup = UnitFactionGroup
+local dbmTimerType = 3
 local media = {}
 LSM:Register("statusbar", "ElvUI Norm", [[Interface\AddOns\DBM-Core\textures\NormTex2.tga]])
 LSM:Register("background", "ElvUI Blank", [[Interface\BUTTONS\WHITE8X8]])
@@ -44,7 +30,40 @@ local timerTypes = {
 }
 
 local chatMessage = {
-	-- enUS
+	-- Ущелье Песни Войны
+	["Битва за Ущелье Песни Войны начнется через 30 секунд. Приготовьтесь!"] = timerTypes["30-120"],
+	["Битва за Ущелье Песни Войны начнется через 1 минуту."] = timerTypes["60-120"],
+	["Сражение в Ущелье Песни Войны начнется через 2 минуты."] = timerTypes["120-120"],
+	-- Низина Арати
+	["Битва за Низину Арати начнется через 30 секунд. Приготовьтесь!"] = timerTypes["30-120"],
+	["Битва за Низину Арати начнется через 1 минуту."] = timerTypes["60-120"],
+	["Сражение в Низине Арати начнется через 2 минуты."] = timerTypes["120-120"],
+	-- Око Бури
+	["Битва за Око Бури начнется через 30 секунд."] = timerTypes["30-120"],
+	["Битва за Око Бури начнется через 1 минуту."] = timerTypes["60-120"],
+	["Сражение в Око Бури начнется через 2 минуты."] = timerTypes["120-120"],
+	-- Альтеракская долина
+	["Сражение на Альтеракской долине начнется через 30 секунд. Приготовьтесь!"] = timerTypes["30-120"],
+	["Сражение на Альтеракской долине начнется через 1 минуту."] = timerTypes["60-120"],
+	["Сражение на Альтеракской долине начнется через 2 минуты."] = timerTypes["120-120"],
+	-- Берег Древних
+	["Битва за Берег Древних начнется через 30 секунд. Приготовьтесь!"] = timerTypes["30-120"],
+	["Битва за Берег Древних начнется через 1 минуту."] = timerTypes["60-120"],
+	["Битва за Берег Древних начнется через 2 минуты."] = timerTypes["120-120"],
+	-- Берег древних 2-й раунд
+	["Второй раунд начнется через 30 секунд. Приготовьтесь!"] = timerTypes["30-60"],
+	["Второй раунд битвы за Берег Древних начнется через 1 минуту."] = timerTypes["60-60"],
+	-- Другие
+	["Битва начнется через 30 секунд!"] = timerTypes["30-120"],
+	["Битва начнется через 1 минуту."] = timerTypes["60-120"],
+	["Битва начнется через 2 минуты."] = timerTypes["120-120"],
+	-- Арена
+	["15 секунд до начала боя на арене!"] = timerTypes["15-60"],
+	["30 секунд до начала боя на арене!"] = timerTypes["30-60"],
+	["1 минута до начала боя на арене!"] = timerTypes["60-60"],
+	["Пятнадцать секунд до начала боя на арене!"] = timerTypes["15-60"],
+	["Тридцать секунд до начала боя на арене !"] = timerTypes["30-60"],
+
 	-- WSG
 	["The battle for Warsong Gulch begins in 30 seconds. Prepare yourselves!"] = timerTypes["30-120"],
 	["The battle for Warsong Gulch begins in 1 minute."] = timerTypes["60-120"],
@@ -59,9 +78,7 @@ local chatMessage = {
 	["The battle for Eye of the Storm begins in 2 minutes."] = timerTypes["120-120"],
 	-- AV
 	["The Battle for Alterac Valley begins in 30 seconds. Prepare yourselves!"] = timerTypes["30-120"],
-	["30 seconds until the battle for Alterac Valley begins."] = timerTypes["30-120"],
 	["The Battle for Alterac Valley begins in 1 minute."] = timerTypes["60-120"],
-	["1 minute until the battle for Alterac Valley begins."] = timerTypes["60-120"],
 	["The Battle for Alterac Valley begins in 2 minutes."] = timerTypes["120-120"],
 	-- SotA
 	["The battle for Strand of the Ancients begins in 30 seconds. Prepare yourselves!."] = timerTypes["30-120"],
@@ -80,169 +97,7 @@ local chatMessage = {
 	-- Arena
 	["Fifteen seconds until the Arena battle begins!"] = timerTypes["15-60"],
 	["Thirty seconds until the Arena battle begins!"] = timerTypes["30-60"],
-	["One minute until the Arena battle begins!"] = timerTypes["60-60"],
-
-	-- deDE
-	-- WSG
-	["Der Kampf um die Kriegshymnenschlucht beginnt in 30 Sekunden. Haltet Euch bereit!"] = timerTypes["30-120"],
-	["Der Kampf um die Kriegshymnenschlucht beginnt in 1 Minute."] = timerTypes["60-120"],
-	-- AV
-	["Der Kampf um das Alteractal beginnt in 30 Sekunden."] = timerTypes["30-120"],
-	["Der Kampf um das Alteractal beginnt in 1 Minute."] = timerTypes["60-120"],
-	-- SotA 2 round
-	["Runde 2 beginnt in 30 Sekunden. Macht Euch bereit!"] = timerTypes["30-60"],
-	["Runde 2 der Schlacht um den Strand der Uralten beginnt in 1 Minute."] = timerTypes["60-60"],
-	-- Other
-	["Die Schlacht beginnt in 30 Sekunden!"] = timerTypes["30-120"],
-	["Die Schlacht beginnt in 1 Minute!"] = timerTypes["60-120"],
-	["Die Schlacht beginnt in 2 Minuten!"] = timerTypes["120-120"],
-	-- Arena
-	["Noch fünfzehn Sekunden bis der Arenakampf beginnt!"] = timerTypes["15-60"],
-	["Noch dreißig Sekunden bis der Arenakampf beginnt!"] = timerTypes["30-60"],
-	["Noch eine Minute bis der Arenakampf beginnt!"] = timerTypes["60-60"],
-
-	-- esES & esMX
-	-- WSG
-	["La batalla por la Garganta Grito de Guerra comenzará en 30 segundos. ¡Preparaos!"] = timerTypes["30-120"],
-	["La batalla por la Garganta Grito de Guerra comenzará en 1 minuto."] = timerTypes["60-120"],
-	-- AV
-	["30 segundos para que dé comienzo la batalla por el Valle de Alterac."] = timerTypes["30-120"],
-	["1 minuto para que dé comienzo la batalla por el Valle de Alterac."] = timerTypes["60-120"],
-	-- SotA 2 round
-	["La ronda 2 comenzará en 30 segundos. ¡Preparaos!"] = timerTypes["30-60"],
-	["La ronda 2 de la batalla por la Playa de los Ancestros comenzará en 1 minuto."] = timerTypes["60-60"],
-	-- Other
-	["¡La batalla comienza en treinta segundos!"] = timerTypes["30-120"],
-	["¡La batalla comienza en un minuto!"] = timerTypes["60-120"],
-	["¡La batalla comienza en dos minutos!"] = timerTypes["120-120"],
-	-- Arena
-	["¡Quince segundos para que comience la batalla de arena!"] = timerTypes["15-60"],
-	["¡Treinta segundos hasta que comience la batalla en arena!"] = timerTypes["30-60"],
-	["¡Un minuto hasta que dé comienzo la batalla en arena!"] = timerTypes["60-60"],
-
-	-- frFR
-	-- WSG
-	["La bataille pour le goulet des Chanteguerres commence dans 30 secondes. Préparez-vous !"] = timerTypes["30-120"],
-	["La bataille pour le goulet des Chanteguerres commence dans 1 minute."] = timerTypes["60-120"],
-	-- AV
-	["La bataille pour la vallée d’Alterac commence dans 30 secondes."] = timerTypes["30-120"],
-	["La bataille pour la vallée d’Alterac commence dans 1 minute."] = timerTypes["60-120"],
-	-- SotA 2 round
-	["Début de la deuxième manche dans 30 secondes. Préparez-vous !"] = timerTypes["30-60"],
-	["Deuxième manche de la bataille du rivage des Anciens dans 1 minute."] = timerTypes["60-60"],
-	-- Other
-	["La bataille commence dans 30 secondes !"] = timerTypes["30-120"],
-	["La bataille commence dans 1 minute !"] = timerTypes["60-120"],
-	["La bataille commence dans 2 minutes !"] = timerTypes["120-120"],
-	-- Arena
-	["Le combat commence dans quinze secondes !"] = timerTypes["15-60"],
-	["Le combat d’arène commence dans trente secondes !"] = timerTypes["30-60"],
-	["Le combat d’arène commence dans une minute !"] = timerTypes["60-60"],
-
-	-- koKR
-	-- WSG
-	["30초 후 전쟁노래 협곡 전투가 시작됩니다. 준비하십시오!"] = timerTypes["30-120"],
-	["1분 후 전쟁노래 협곡 전투가 시작됩니다!"] = timerTypes["60-120"],
-	-- AV
-	["알터랙 계곡 전투 개시 30초 전..."] = timerTypes["30-120"],
-	["알터랙 계곡 전투 개시 1분 전..."] = timerTypes["60-120"],
-	-- SotA 2 round
-	["30초 후 두 번째 전투가 시작됩니다. 준비하세요!"] = timerTypes["30-60"],
-	["1분 후 고대의 해안 두 번째 전투가 시작됩니다."] = timerTypes["60-60"],
-	-- Other
-	["30초 후 전투가 시작됩니다!"] = timerTypes["30-120"],
-	["1분 후 전투가 시작됩니다!"] = timerTypes["60-120"],
-	["2분 후 전투가 시작됩니다!"] = timerTypes["120-120"],
-	-- Arena
-	["투기장 전투 시작 15초 전입니다!"] = timerTypes["15-60"],
-	["투기장 전투 시작 30초 전입니다!"] = timerTypes["30-60"],
-	["투기장 전투 시작 1분 전입니다!"] = timerTypes["60-60"],
-
-	-- ruRU
-	-- Ущелье Песни Войны
-	["Битва за Ущелье Песни Войны начнется через 30 секунд. Приготовьтесь!"] = timerTypes["30-120"],
-	["Битва за Ущелье Песни Войны начнется через 30 секунд. Приготовиться!"] = timerTypes["30-120"],
-	["Битва за Ущелье Песни Войны начнется через 1 минуту."] = timerTypes["60-120"],
-	["Сражение в Ущелье Песни Войны начнется через 2 минуты."] = timerTypes["120-120"],
-	-- Низина Арати
-	["Битва за Низину Арати начнется через 30 секунд. Приготовьтесь!"] = timerTypes["30-120"],
-	["Битва за Низину Арати начнется через 30 секунд."] = timerTypes["30-120"],
-	["Битва за Низину Арати начнется через 1 минуту."] = timerTypes["60-120"],
-	["Битва за Низину Арати начнется через минуту."] = timerTypes["60-120"],
-	["Сражение в Низине Арати начнется через 2 минуты."] = timerTypes["120-120"],
-	-- Око Бури
-	["Битва за Око Бури начнется через 30 секунд."] = timerTypes["30-120"],
-	["Битва за Око Бури начнется через 1 минуту."] = timerTypes["60-120"],
-	["Сражение в Око Бури начнется через 2 минуты."] = timerTypes["120-120"],
-	-- Альтеракская долина
-	["Сражение на Альтеракской долине начнется через 30 секунд. Приготовьтесь!"] = timerTypes["30-120"],
-	["30 секунд до начала битвы в Альтеракской долине."] = timerTypes["30-120"],
-	["Сражение на Альтеракской долине начнется через 1 минуту."] = timerTypes["60-120"],
-	["До начала сражения за Альтеракскую долину остается 1 минута."] = timerTypes["60-120"],
-	["Сражение на Альтеракской долине начнется через 2 минуты."] = timerTypes["120-120"],
-	-- Берег Древних
-	["Битва за Берег Древних начнется через 30 секунд. Приготовьтесь!"] = timerTypes["30-120"],
-	["Сражение за Берег Древних начнется через 30 секунд. Готовьтесь!"] = timerTypes["30-120"],
-	["Битва за Берег Древних начнется через 1 минуту."] = timerTypes["60-120"],
-	["Сражение за Берег Древних начнется через 1 минуту."] = timerTypes["60-120"],
-	["Битва за Берег Древних начнется через 2 минуты."] = timerTypes["120-120"],
-	-- Берег древних 2-й раунд
-	["Второй раунд начнется через 30 секунд. Приготовьтесь!"] = timerTypes["30-60"],
-	["Второй раунд начинается через 30 секунд. Приготовьтесь!"] = timerTypes["30-60"],
-	["Второй раунд битвы за Берег Древних начнется через 1 минуту."] = timerTypes["60-60"],
-	["Второй раунд сражения за Берег Древних начнется через 1 минуту."] = timerTypes["60-60"],
-	-- Другие
-	["Битва начнется через 30 секунд!"] = timerTypes["30-120"],
-	["Битва начнется через 30 секунд."] = timerTypes["30-120"],
-	["Битва начнется через 1 минуту."] = timerTypes["60-120"],
-	["Битва начнется через минуту!"] = timerTypes["60-120"],
-	["Битва начнется через 60 секунд."] = timerTypes["60-120"],
-	["Битва начнется через 2 минуты!"] = timerTypes["120-120"],
-	-- Арена
-	["15 секунд до начала боя на арене!"] = timerTypes["15-60"],
-	["Пятнадцать секунд до начала боя на арене!"] = timerTypes["15-60"],
-	["30 секунд до начала боя на арене!"] = timerTypes["30-60"],
-	["Тридцать секунд до начала боя на арене !"] = timerTypes["30-60"],
-	["1 минута до начала боя на арене!"] = timerTypes["60-60"],
-	["Одна минута до начала боя на арене!"] = timerTypes["60-60"],
-
-	-- zhCN
-	-- WSG
-	["战歌峡谷战斗将在30秒钟内开始。做好准备！"] = timerTypes["30-120"],
-	["战歌峡谷战斗将在1分钟内开始。"] = timerTypes["60-120"],
-	-- AV
-	["奥特兰克山谷的战斗将在30秒之后开始。"] = timerTypes["30-120"],
-	["奥特兰克山谷的战斗将在1分钟之后开始。"] = timerTypes["60-120"],
-	-- SotA 2 round
-	["第2轮比赛将在30秒后开始。备战！"] = timerTypes["30-60"],
-	["远古海滩的第2轮比赛将在1分钟后开始。"] = timerTypes["60-60"],
-	-- Other
-	["战斗将在30秒后开始！"] = timerTypes["30-120"],
-	["战斗将在1分钟后开始！"] = timerTypes["60-120"],
-	["战斗将在2分钟后开始！"] = timerTypes["120-120"],
-	-- Arena
-	["竞技场战斗将在十五秒后开始！"] = timerTypes["15-60"],
-	["竞技场战斗将在三十秒后开始！"] = timerTypes["30-60"],
-	["竞技场战斗将在一分钟后开始！"] = timerTypes["60-60"],
-
-	-- zhTW
-	-- WSG
-	["戰歌峽谷戰鬥將在30秒鐘內開始。做好準備!"] = timerTypes["30-120"],
-	["戰歌峽谷戰鬥將在1分鐘內開始。"] = timerTypes["60-120"],
-	-- AV
-	["奧特蘭克山谷30秒後開始戰鬥。"] = timerTypes["30-120"],
-	["奧特蘭克山谷一分鐘後開始戰鬥。"] = timerTypes["60-120"],
-	-- SotA 2 round
-	["第2回合將在30秒後開始。做好準備!"] = timerTypes["30-60"],
-	["遠祖灘頭的第2回合戰鬥將在1分鐘後開始。"] = timerTypes["60-60"],
-	-- Other
-	["戰鬥在30秒內開始!"] = timerTypes["30-120"],
-	["戰鬥在1分鐘內開始!"] = timerTypes["60-120"],
-	["戰鬥在2分鐘內開始!"] = timerTypes["120-120"],
-	-- Arena
-	["15秒後競技場戰鬥開始!"] = timerTypes["15-60"],
-	["30秒後競技場戰鬥開始!"] = timerTypes["30-60"],
-	["1分鐘後競技場戰鬥開始!"] = timerTypes["60-60"]
+	["One minute until the Arena battle begins!"] = timerTypes["60-60"]
 }
 
 local TIMER_MINUTES_DISPLAY = "%d:%02d"
@@ -250,21 +105,10 @@ local TIMER_TYPE_PVP = 1
 local TIMER_TYPE_CHALLENGE_MODE = 2
 local TIMER_TYPE_PLAYER_COUNTDOWN = 3
 
--- SOUND KITS
-local SOUNDKIT = {
-	UI_COUNTDOWN_BAR_STATE_STARTS = "Interface\\AddOns\\DBM-Core\\sounds\\Timer\\TempMono.ogg", -- 158958
-	UI_COUNTDOWN_BAR_STATE_FINISHED = "Interface\\AddOns\\DBM-Core\\sounds\\Timer\\TempMono.ogg", -- 158959
-	UI_COUNTDOWN_MEDIUM_NUMBER_FINISHED = "Interface\\AddOns\\DBM-Core\\sounds\\Timer\\TempMono.ogg", -- 158960
-	UI_COUNTDOWN_TIMER = "Interface\\AddOns\\DBM-Core\\sounds\\Timer\\UI_BattlegroundCountdown_Timer.ogg", -- 158565
-	UI_COUNTDOWN_FINISHED = "Interface\\AddOns\\DBM-Core\\sounds\\Timer\\UI_BattlegroundCountdown_End.ogg", -- 158566
-	UI_BATTLEGROUND_COUNTDOWN_TIMER = "Interface\\AddOns\\DBM-Core\\sounds\\Timer\\UI_BattlegroundCountdown_Timer.ogg", -- 25477
-	UI_BATTLEGROUND_COUNTDOWN_FINISHED = "Interface\\AddOns\\DBM-Core\\sounds\\Timer\\UI_BattlegroundCountdown_End.ogg", -- 25478
-}
-
 local TIMER_DATA = {
 	[1] = {mediumMarker = 11, largeMarker = 6, updateInterval = 10},
 	[2] = {mediumMarker = 100, largeMarker = 100, updateInterval = 100},
-	[3] = {mediumMarker = 31, largeMarker = 11, updateInterval = 10, finishedSoundKitID = SOUNDKIT.UI_COUNTDOWN_FINISHED, bigNumberSoundKitID = SOUNDKIT.UI_COUNTDOWN_TIMER, mediumNumberFinishedSoundKitID = SOUNDKIT.UI_COUNTDOWN_MEDIUM_NUMBER_FINISHED, barShowSoundKitID = SOUNDKIT.UI_COUNTDOWN_BAR_STATE_STARTS, barHideSoundKitID = SOUNDKIT.UI_COUNTDOWN_BAR_STATE_FINISHED}
+	[3] = {mediumMarker = 31, largeMarker = 11, updateInterval = 10}
 }
 
 local TIMER_NUMBERS_SETS = {}
@@ -386,13 +230,6 @@ local function StartNumbers_OnFinished(self)
 		timer.StartNumbers:Play()
 		timer.StartGlowNumbers:Play()
 	else
-		if DBM.Options.PlayTTCountdownFinished then
-			if TIMER_DATA[timer.type].finishedSoundKitID then
-				PlaySoundFile(TIMER_DATA[timer.type].finishedSoundKitID)
-			else
-				PlaySoundFile(SOUNDKIT.UI_BATTLEGROUND_COUNTDOWN_FINISHED)
-			end
-		end
 		timer.anchorCenter = false
 		timer.isFree = true
 		timer.GoTextureAnim:Play()
@@ -543,10 +380,6 @@ function TT:CreateTimer(timerType, timeSeconds, totalTime)
 			end
 		end
 
-		if timer and timer.type == TIMER_TYPE_PLAYER_COUNTDOWN then
-			self:FreeTimerTrackerTimer(timer)
-		end
-
 		if not timer then
 			timer = self:CreateTimerBar()
 			self.timerList[#self.timerList + 1] = timer
@@ -596,9 +429,6 @@ function TT:BigNumberOnUpdate(elapsed)
 		if self.barShowing then
 			self.barShowing = false
 			self.FadeBarOut:Play()
-			if TIMER_DATA[self.type].barHideSoundKitID then
-				PlaySoundFile(TIMER_DATA[self.type].barHideSoundKitID)
-			end
 		else
 			self.StartNumbers:Play()
 			self.StartGlowNumbers:Play()
@@ -606,9 +436,6 @@ function TT:BigNumberOnUpdate(elapsed)
 	elseif not self.barShowing then
 		self.FadeBarIn:Play()
 		self.barShowing = true
-		if TIMER_DATA[self.type].barShowSoundKitID then
-			PlaySoundFile(TIMER_DATA[self.type].barShowSoundKitID)
-		end
 	elseif self.updateTime <= 0 then
 		self.updateTime = TIMER_DATA[self.type].updateInterval
 	end
@@ -661,13 +488,6 @@ function TT:SetTexNumbers(timer, ...)
 	end
 
 	if numberOffset > 0 then
-		if DBM.Options.PlayTTCountdown then
-			if TIMER_DATA[timer.type].bigNumberSoundKitID and numShown < TIMER_DATA[timer.type].largeMarker then
-				PlaySoundFile(TIMER_DATA[timer.type].bigNumberSoundKitID)
-			else
-				PlaySoundFile(SOUNDKIT.UI_BATTLEGROUND_COUNTDOWN_TIMER)
-			end
-		end
 		digits[1]:ClearAllPoints()
 
 		if timer.anchorCenter then
@@ -685,7 +505,7 @@ end
 
 function TT:SetGoTexture(timer)
 	if timer.type == TIMER_TYPE_PVP then
-		local factionGroup = GetBattlefieldFaction("player")
+		local factionGroup = UnitFactionGroup("player")
 
 		if factionGroup and factionGroup ~= "Neutral" then
 			timer.GoTexture:SetTexture("Interface\\AddOns\\DBM-Core\\textures\\Timer\\"..factionGroup.."-Logo")
@@ -706,9 +526,6 @@ function TT:SwitchToLargeDisplay(timer)
 	timer.Digit1.width = timer.style.w
 	timer.Digit2.width = timer.style.w
 	timer.anchorCenter = true
-	if TIMER_DATA[timer.type].mediumNumberFinishedSoundKitID then
-		PlaySoundFile(TIMER_DATA[timer.type].mediumNumberFinishedSoundKitID)
-	end
 end
 
 function TT:ReleaseTimers()
@@ -728,11 +545,10 @@ function TT:FreeTimerTrackerTimer(timer)
 	timer.FadeBarIn:Stop()
 	timer.StartNumbers:Stop()
 	timer.GoTextureAnim:Stop()
-	timer.StatusBar:Hide()
+	timer.StatusBar:SetAlpha(0)
 end
 
 function TT:OnEvent(event, ...)
-	if not DBM.Options.PlayTT then return end
 	if event == "START_TIMER" then
 		local timerType, timeSeconds, totalTime  = ...
 		self:CreateTimer(timerType, timeSeconds + 0.1, totalTime + 0.1)
@@ -743,7 +559,7 @@ function TT:OnEvent(event, ...)
 		end
 	elseif event == "PLAYER_ENTERING_WORLD" then
 		for _, timer in pairs(self.timerList) do
-			if timer.type == TIMER_TYPE_PVP then
+			if timer.type == TIMER_TYPE_PLAYER_COUNTDOWN then
 				self:FreeTimerTrackerTimer(timer)
 			end
 		end

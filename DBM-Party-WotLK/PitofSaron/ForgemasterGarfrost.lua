@@ -1,16 +1,17 @@
 local mod	= DBM:NewMod("ForgemasterGarfrost", "DBM-Party-WotLK", 15)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20220518110528")
+mod:SetRevision(("$Revision: 4430 $"):sub(12, -3))
 mod:SetCreatureID(36494)
 mod:SetUsedIcons(8)
 
 mod:RegisterCombat("combat")
 
-mod:RegisterEventsInCombat(
-	"SPELL_CAST_START 68788",
-	"SPELL_AURA_APPLIED 70381 72930 68785 70335",
-	"SPELL_AURA_APPLIED_DOSE 68786 70336",
+mod:RegisterEvents(
+	"SPELL_CAST_START",
+	"SPELL_AURA_APPLIED",
+	"SPELL_AURA_APPLIED_DOSE",
+	"SPELL_CREATE",
 	"CHAT_MSG_RAID_BOSS_WHISPER"
 )
 
@@ -24,16 +25,16 @@ local specWarnSaroniteRockNear	= mod:NewSpecialWarningClose(68789, nil, nil, nil
 local specWarnPermafrost		= mod:NewSpecialWarningStack(68786, nil, 9, nil, nil, 1, 2)
 
 local timerSaroniteRockCD		= mod:NewCDTimer(15.5, 68789, nil, nil, nil, 3)--15.5-20
-local timerDeepFreezeCD			= mod:NewCDTimer(19, 70381, nil, "Healer", 2, 5, nil, DBM_COMMON_L.HEALER_ICON)
+local timerDeepFreezeCD			= mod:NewCDTimer(19, 70381, nil, "Healer", 2, 5, nil, DBM_CORE_L.HEALER_ICON)
 local timerDeepFreeze			= mod:NewTargetTimer(14, 70381, nil, false, 3, 5)
 
-mod:AddSetIconOption("SetIconOnSaroniteRockTarget", 68789, true, false, {8})
+mod:AddBoolOption("SetIconOnSaroniteRockTarget", true)
 mod:AddBoolOption("AchievementCheck", false, "announce")
 
-mod.vb.warnedfailed = false
+local warnedfailed = false
 
-function mod:OnCombatStart()
-	self.vb.warnedfailed = false
+function mod:OnCombatStart(delay)
+	warnedfailed = false
 end
 
 function mod:SPELL_CAST_START(args)
@@ -59,12 +60,14 @@ function mod:SPELL_AURA_APPLIED_DOSE(args)
 			specWarnPermafrost:Show(amount)
 			specWarnPermafrost:Play("stackhigh")
 		end
-		if self.Options.AchievementCheck and not self.vb.warnedfailed then
-			if amount == 9 or amount == 10 then
-				SendChatMessage(L.AchievementWarning:format(args.destName, amount), "PARTY")
-			elseif amount > 11 then
-				SendChatMessage(L.AchievementFailed:format(args.destName, amount), "PARTY")
-				self.vb.warnedfailed = true
+		if args:IsDestTypePlayer() then
+			if self.Options.AchievementCheck and not warnedfailed then
+				if amount == 9 or amount == 10 then
+					SendChatMessage(L.AchievementWarning:format(args.destName, amount), "PARTY")
+				elseif amount > 11 then
+					SendChatMessage(L.AchievementFailed:format(args.destName, amount), "PARTY")
+					warnedfailed = true
+				end
 			end
 		end
 	end
@@ -88,12 +91,11 @@ end
 
 function mod:OnSync(msg, targetName)
 	if msg == "SaroniteRock" then
-		if not targetName then return end
 		if targetName == UnitName("player") then
-				specWarnSaroniteRock:Show()
-				specWarnSaroniteRock:Play("watchstep")
-				yellRock:Yell()
-		else
+			specWarnSaroniteRock:Show()
+			specWarnSaroniteRock:Play("watchstep")
+			yellRock:Yell()
+		elseif targetName then
 			local uId = DBM:GetRaidUnitId(targetName)
 			if uId and not UnitIsUnit(uId, "player") and self:CheckNearby(10, targetName) then
 				specWarnSaroniteRockNear:Show(targetName)
@@ -101,9 +103,9 @@ function mod:OnSync(msg, targetName)
 			else
 				warnSaroniteRock:Show(targetName)
 			end
-		end
-		if self.Options.SetIconOnSaroniteRockTarget then
-			self:SetIcon(targetName, 8, 5)
+			if self.Options.SetIconOnSaroniteRockTarget then
+				self:SetIcon(targetName, 8, 5)
+			end
 		end
 	end
 end

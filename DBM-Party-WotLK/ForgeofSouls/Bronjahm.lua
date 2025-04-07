@@ -1,14 +1,14 @@
 local mod	= DBM:NewMod("Bronjahm", "DBM-Party-WotLK", 14)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20220806222721")
+mod:SetRevision(("$Revision: 3726 $"):sub(12, -3))
 mod:SetCreatureID(36497)
 
 mod:RegisterCombat("combat")
 
-mod:RegisterEventsInCombat(
-	"SPELL_CAST_START 68872",
-	"SPELL_AURA_APPLIED 68839",
+mod:RegisterEvents(
+	"SPELL_CAST_START",
+	"SPELL_AURA_APPLIED",
 	"UNIT_HEALTH"
 )
 
@@ -22,7 +22,7 @@ local timerSoulstormCast	= mod:NewCastTimer(4, 68872, nil, nil, nil, 2)
 
 mod.vb.warned_preStorm = false
 
-function mod:OnCombatStart()
+function mod:OnCombatStart(delay)
 	self.vb.warned_preStorm = false
 end
 
@@ -37,7 +37,7 @@ end
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 68839 then							-- Corrupt Soul
 		if args:IsPlayer() then
-			specwarnCorruptedSoul:Show(DBM_COMMON_L.EDGE)
+			specwarnCorruptedSoul:Show(DBM_CORE_L.EDGE)
 			specwarnCorruptedSoul:Play("runtoedge")
 		else
 			warnCorruptSoul:Show(args.destName)

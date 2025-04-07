@@ -183,10 +183,6 @@ L:SetGeneralLocalization({
 	name = "Trollgrind"
 })
 
-L:SetMiscLocalization({
-	YellExplosion = "Leiche macht Bumm!"
-})
-
 --------------------------
 --  Novos the Summoner  --
 --------------------------
@@ -316,7 +312,7 @@ L:SetGeneralLocalization({
 --------------------------
 --  General Bjarngrim  --
 -------------------------
-L = DBM:GetModLocalization("Bjarngrin")
+L = DBM:GetModLocalization("Gjarngrin")
 
 L:SetGeneralLocalization({
 	name = "General Bjarngrim"
@@ -343,7 +339,7 @@ L:SetGeneralLocalization({
 -------------
 --  Loken  --
 -------------
-L = DBM:GetModLocalization("Loken")
+L = DBM:GetModLocalization("Kronus")
 
 L:SetGeneralLocalization({
 	name = "Loken"
@@ -907,7 +903,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LichKingEvent")
 
 L:SetGeneralLocalization({
-	name = "Flucht vor Arthas"
+	name = "Lichkönig-Event"
 })
 
 L:SetTimerLocalization({
@@ -919,7 +915,6 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	ArthasYellKill	= "FEUER! FEUER!",
 	Ghoul			= "Tobender Ghul",				--creature id 36940. Not sure how to use these in function above to simplify locals though. :\
 	Abom			= "Schwerfällige Monstrosität",	--creature id 37069
 	WitchDoctor		= "Auferstandener Hexendoktor",	--creature id 36941

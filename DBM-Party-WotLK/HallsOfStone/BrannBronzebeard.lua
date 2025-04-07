@@ -1,8 +1,9 @@
 local mod	= DBM:NewMod("BrannBronzebeard", "DBM-Party-WotLK", 7)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20220809182722")
+mod:SetRevision(("$Revision: 4282 $"):sub(12, -3))
 mod:SetCreatureID(28070)
+--mod:SetZone()
 mod:SetMinSyncRevision(2861)
 
 mod:RegisterCombat("yell", L.Pull)
@@ -10,19 +11,18 @@ mod:RegisterKill("yell", L.Kill)
 mod:SetMinCombatTime(50)
 mod:SetWipeTime(25)
 
-mod:RegisterEventsInCombat(
+mod:RegisterEvents(
 	"CHAT_MSG_MONSTER_YELL"
 )
 
 local warningPhase	= mod:NewAnnounce("WarningPhase", 2, "Interface\\Icons\\Spell_Nature_WispSplode")
-
-local timerEvent	= mod:NewTimer(247, "timerEvent", "Interface\\Icons\\Spell_Holy_BorrowedTime", nil, nil, 6)
+local timerEvent	= mod:NewTimer(332, "timerEvent", "Interface\\Icons\\Spell_Holy_BorrowedTime")
 
 function mod:OnCombatStart(delay)
 	timerEvent:Start(-delay)
 end
 
-function mod:CHAT_MSG_MONSTER_YELL(msg)
+function mod:CHAT_MSG_MONSTER_YELL(msg, sender)
 	if L.Phase1 == msg then
 		warningPhase:Show(1)
 	elseif msg == L.Phase2 then
@@ -31,3 +31,5 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		warningPhase:Show(3)
 	end
 end
+
+

@@ -1,13 +1,14 @@
 local mod	= DBM:NewMod("Volkhan", "DBM-Party-WotLK", 6)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20220518110528")
+mod:SetRevision(("$Revision: 2250 $"):sub(12, -3))
 mod:SetCreatureID(28587)
+mod:SetZone()
 
 mod:RegisterCombat("combat")
 
-mod:RegisterEventsInCombat(
-	"SPELL_CAST_START 59529 52237"
+mod:RegisterEvents(
+	"SPELL_CAST_START"
 )
 
 local warningStomp	= mod:NewSpellAnnounce(52237, 3)

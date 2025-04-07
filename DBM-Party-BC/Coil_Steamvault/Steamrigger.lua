@@ -1,9 +1,7 @@
 local mod	= DBM:NewMod(574, "DBM-Party-BC", 6, 261)
 local L		= mod:GetLocalizedStrings()
 
-mod.statTypes = "normal,heroic,mythic"
-
-mod:SetRevision("20220518110528")
+mod:SetRevision(("$Revision: 7007 $"):sub(12, -3))
 mod:SetCreatureID(17796)
 
 mod:SetModelID(18638)
@@ -26,8 +24,8 @@ local enrageTimer		= mod:NewBerserkTimer(300)
 
 function mod:OnCombatStart(delay)
 	if self:IsHeroic() then
-		enrageTimer:Start(-delay)
-	end
+        enrageTimer:Start(-delay)
+    end
 end
 
 function mod:SPELL_AURA_APPLIED(args)

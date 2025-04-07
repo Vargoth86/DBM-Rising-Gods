@@ -2,6 +2,9 @@ if GetLocale() ~= "ruRU" then return end
 
 local L
 
+local optionWarning		= "Предупреждение для %s"
+local optionPreWarning	= "Предупреждать заранее о %s"
+
 ----------------------------------
 --  Ahn'Kahet: The Old Kingdom  --
 ----------------------------------
@@ -139,7 +142,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarningWaveNow	= "Предупреждение о новой волне",
+	WarningWaveNow	= optionWarning:format("новой волны"),
 	TimerWaveIn		= "Отсчет времени до cледующей волны (после босса 5-ой волны)",
 	TimerRoleplay	= "Отсчет времени для вступительного представления"
 })
@@ -173,10 +176,6 @@ L = DBM:GetModLocalization("Trollgore")
 
 L:SetGeneralLocalization({
 	name = "Кровотролль"
-})
-
-L:SetMiscLocalization({
-	YellExplosion = "Труп бдыжь!"
 })
 
 --------------------------
@@ -308,7 +307,7 @@ L:SetGeneralLocalization({
 --------------------------
 --  General Bjarngrim  --
 -------------------------
-L = DBM:GetModLocalization("Bjarngrin")
+L = DBM:GetModLocalization("Gjarngrin")
 
 L:SetGeneralLocalization({
 	name = "Генерал Бьярнгрин"
@@ -335,7 +334,7 @@ L:SetGeneralLocalization({
 -------------
 --  Loken  --
 -------------
-L = DBM:GetModLocalization("Loken")
+L = DBM:GetModLocalization("Kronus")
 
 L:SetGeneralLocalization({
 	name = "Локен"
@@ -388,7 +387,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarningPhase	= "Предупреждение о смене фазы",
+	WarningPhase	= optionWarning:format("фаз"),
 	timerEvent		= "Отсчет времени продолжительности события"
 })
 
@@ -705,9 +704,9 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarningPortalNow		= "Предупреждение для нового портала",
-	WarningPortalSoon		= "Предварительное предупреждение для нового портала",
-	WarningBossNow			= "Предупреждение о появлении босса",
+	WarningPortalNow		= optionWarning:format("нового портала"),
+	WarningPortalSoon		= optionPreWarning:format("новом портале"),
+	WarningBossNow			= optionWarning:format("прибытия босса"),
 	TimerPortalIn			= "Отсчет времени до следующего портала (после босса)",
 	ShowAllPortalTimers		= "Отсчет времени для всех порталов (неточный)"
 })
@@ -820,7 +819,7 @@ L:SetGeneralLocalization({
 L:SetMiscLocalization({
 	CombatStart	= "Увы, бесстрашные герои, ваша навязчивость ускорила развязку. Вы слышите громыхание костей и скрежет стали за вашими спинами? Это предвестники скорой погибели.",
 	HoarfrostTarget	= "Ледяной змей Иней смотрит на (%S+), готовя морозную атаку!",
-	YellCombatEnd	= "Не может быть... Иней... Предупреди..."
+	YellCombatEnd	= "Не может быть... Иней… Предупреди…"
 })
 
 ----------------------
@@ -900,7 +899,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LichKingEvent")
 
 L:SetGeneralLocalization({
-	name = "Побег от Артаса"
+	name = "Побег от Короля-лича"
 })
 
 L:SetTimerLocalization({
@@ -912,7 +911,6 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	ArthasYellKill	= "ОГОНЬ! ОГОНЬ!",
 	Ghoul			= "Гневный вурдалак",		--creature id 36940. Not sure how to use these in function above to simplify locals though. :\
 	Abom			= "Неуклюжее поганище",		--creature id 37069
 	WitchDoctor		= "Воскрешенный ведьмак",	--creature id 36941

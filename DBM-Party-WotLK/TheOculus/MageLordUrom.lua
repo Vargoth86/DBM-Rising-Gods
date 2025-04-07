@@ -1,30 +1,27 @@
 local mod	= DBM:NewMod("MageLordUrom", "DBM-Party-WotLK", 9)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20220518110528")
+mod:SetRevision(("$Revision: 3162 $"):sub(12, -3))
 mod:SetCreatureID(27655)
 mod:SetMinSyncRevision(2824)
 
 mod:RegisterCombat("yell", L.CombatStart)
 
-mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED 51121 59376",
-	"SPELL_CAST_START 51110 59377"
+mod:RegisterEvents(
+	"SPELL_AURA_APPLIED",
+	"SPELL_CAST_START"
 )
 
-local warningTimeBomb		= mod:NewTargetNoFilterAnnounce(51121, 4)
-
-local specWarnExplosion		= mod:NewSpecialWarningMoveTo(51110, nil, nil, nil, 3, 2)
+local warningTimeBomb		= mod:NewTargetAnnounce(51121, 2)
+local warningExplosion		= mod:NewCastAnnounce(51110, 3)
+local timerTimeBomb			= mod:NewTargetTimer(6, 51121)
+local timerExplosion		= mod:NewTargetTimer(8, 51110)
 local specWarnBombYou		= mod:NewSpecialWarningYou(51121)
-
-local timerTimeBomb			= mod:NewTargetTimer(6, 51121, nil, nil, nil, 5, nil, DBM_COMMON_L.HEALER_ICON)
-local timerExplosion		= mod:NewCastTimer(8, 51110, nil, nil, nil, 2, nil, DBM_COMMON_L.DEADLY_ICON)
 
 function mod:SPELL_CAST_START(args)
 	if args:IsSpellID(51110, 59377) then
-		specWarnExplosion:Show(DBM_COMMON_L.BREAK_LOS)
-		specWarnExplosion:Play("findshelter")
-		timerExplosion:Start()
+		warningExplosion:Show()
+		timerExplosion:Start(args.destName)
 		if args:IsPlayer() then
 			specWarnBombYou:Show()
 		end

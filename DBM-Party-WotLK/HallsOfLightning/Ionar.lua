@@ -1,16 +1,17 @@
 local mod	= DBM:NewMod("Ionar", "DBM-Party-WotLK", 6)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20220823234921")
+mod:SetRevision(("$Revision: 3001 $"):sub(12, -3))
 mod:SetCreatureID(28546)
+mod:SetZone()
 mod:SetUsedIcons(8)
 
 mod:RegisterCombat("combat")
 
-mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED 52658 59795",
-	"SPELL_AURA_REMOVED 52658 59795",
-	"SPELL_CAST_START 52770",
+mod:RegisterEvents(
+	"SPELL_AURA_APPLIED",
+	"SPELL_AURA_REMOVED",
+	"SPELL_CAST_START",
 	"UNIT_HEALTH"
 )
 
@@ -23,7 +24,7 @@ local specWarnOverload		= mod:NewSpecialWarningMoveAway(52658, nil, nil, nil, 1,
 local timerOverload			= mod:NewTargetTimer(10, 52658, nil, nil, nil, 3)
 
 mod:AddRangeFrameOption(10, 52658)
-mod:AddSetIconOption("SetIconOnOverloadTarget", 52658, true, false, {8})
+mod:AddSetIconOption("SetIconOnOverloadTarget", 59795, true, false, {8})
 
 local warnedDisperse = false
 

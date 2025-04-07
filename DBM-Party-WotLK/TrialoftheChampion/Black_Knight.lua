@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("BlackKnight", "DBM-Party-WotLK", 13)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20220518110528")
+mod:SetRevision(("$Revision: 4440 $"):sub(12, -3))
 mod:SetCreatureID(35451, 10000)		-- work around, DBM API failes to handle a Boss to die, rebirth, die again, rebirth again and die to loot...
 mod:SetUsedIcons(8)
 
@@ -9,14 +9,11 @@ mod:RegisterCombat("combat")
 mod:RegisterKill("yell", L.YellCombatEnd)
 
 mod:RegisterEvents(
+	"SPELL_CAST_START",
+	"SPELL_AURA_APPLIED",
+	"SPELL_DAMAGE",
+	"SPELL_MISSED",
 	"CHAT_MSG_MONSTER_YELL"
-)
-
-mod:RegisterEventsInCombat(
-	"SPELL_CAST_START 67729 67886",
-	"SPELL_AURA_APPLIED 67823 67882 67751",
-	"SPELL_DAMAGE 67781 67876 67729 67886",
-	"SPELL_MISSED 67781 67876 67729 67886"
 )
 
 local warnMarked			= mod:NewTargetNoFilterAnnounce(67823, 3)
@@ -24,7 +21,7 @@ local warnMarked			= mod:NewTargetNoFilterAnnounce(67823, 3)
 local specWarnDesecration	= mod:NewSpecialWarningMove(67781, nil, nil, nil, 1, 8)
 local specWarnExplode		= mod:NewSpecialWarningRun(67751, "Melee", nil, 2, 4, 2)
 
-local timerCombatStart		= mod:NewCombatTimer(38.5)
+local timerCombatStart		= mod:NewCombatTimer(52)
 local timerMarked			= mod:NewTargetTimer(10, 67823, nil, nil, nil, 3)
 local timerExplode			= mod:NewCastTimer(4, 67729, nil, nil, nil, 2)
 
@@ -33,7 +30,7 @@ mod:AddBoolOption("AchievementCheck", false, "announce")
 
 local warnedfailed = false
 
-function mod:OnCombatStart()
+function mod:OnCombatStart(delay)
 	warnedfailed = false
 end
 

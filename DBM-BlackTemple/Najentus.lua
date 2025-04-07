@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Najentus", "DBM-BlackTemple")
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20220518110528")
+mod:SetRevision(("$Revision: 7007 $"):sub(12, -3))
 mod:SetCreatureID(22887)
 
 mod:SetModelID(21174)
@@ -23,7 +23,7 @@ local yellSpine			= mod:NewYell(39837)
 
 local timerShield		= mod:NewCDTimer(56, 39872, nil, nil, nil, 5)
 
-local berserkTimer		= mod:NewBerserkTimer(300)
+local berserkTimer		= mod:NewBerserkTimer(480)
 
 mod:AddSetIconOption("SpineIcon", 39837)
 mod:AddInfoFrameOption(39878, true)

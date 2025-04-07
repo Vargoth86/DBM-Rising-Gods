@@ -1,5 +1,4 @@
-if GetLocale() ~= "deDE" then return end
-local L
+﻿local L
 
 ----------------------------------
 --  Archavon the Stone Watcher  --
@@ -11,19 +10,20 @@ L:SetGeneralLocalization({
 })
 
 L:SetWarningLocalization({
-	WarningGrab		= "Archavon durchbohrt >%s<"
+	WarningGrab	= "Archavon greift nach >%s<"
 })
 
 L:SetTimerLocalization({
-	ArchavonEnrage	= "Berserker (Archavon)"
-})
-
-L:SetOptionLocalization({
-	WarningGrab		= "Verkünde Ziele von $spell:58666"
+	ArchavonEnrage	= "Archavon-Berserker"
 })
 
 L:SetMiscLocalization({
-	TankSwitch		= "%%s stürzt sich auf (%S+)!"
+	TankSwitch	= "%%s stürzt sich auf (%S+)!"	-- to be checked
+})
+
+L:SetOptionLocalization({
+	WarningGrab		= "Verkünde Griffziele",
+	ArchavonEnrage	= "Zeige Timer für $spell:26662"
 })
 
 --------------------------------
@@ -31,41 +31,73 @@ L:SetMiscLocalization({
 --------------------------------
 L = DBM:GetModLocalization("Emalon")
 
-L:SetGeneralLocalization({
+L:SetGeneralLocalization{
 	name = "Emalon der Sturmwächter"
-})
+}
 
-L:SetTimerLocalization({
-	timerMobOvercharge	= "Überladener Schlag",
-	EmalonEnrage		= "Berserker (Emalon)"
-})
+L:SetWarningLocalization{
+}
 
-L:SetOptionLocalization({
-	timerMobOvercharge	= "Zeige Zeit bis $spell:64219 (erfolgt bei 10 Stapeln von $spell:64217)"
-})
+L:SetTimerLocalization{
+	timerMobOvercharge	= "Überladungsexplosion",
+	EmalonEnrage		= "Emalon-Berserker"
+}
+
+L:SetOptionLocalization{
+	NovaSound			= "Spiele Sound bei $spell:65279",
+	timerMobOvercharge	= "Zeige Timer für Überladen (stapelnder Debuff)",
+	EmalonEnrage		= "Zeige Timer für $spell:26662",
+	RangeFrame			= "Zeige Abstandsfenster (10 m)"
+}
 
 ---------------------------------
 --  Koralon the Flame Watcher  --
 ---------------------------------
 L = DBM:GetModLocalization("Koralon")
 
-L:SetGeneralLocalization({
+L:SetGeneralLocalization{
 	name = "Koralon der Flammenwächter"
-})
+}
 
-L:SetTimerLocalization({
-	KoralonEnrage	= "Berserker (Koralon)"
-})
+L:SetWarningLocalization{
+	BurningFury		= "Brennender Atem >%d<"
+}
+
+L:SetTimerLocalization{
+	KoralonEnrage	= "Koralon-Berserker"
+}
+
+L:SetOptionLocalization{
+	PlaySoundOnCinder	= "Spiele Sound wenn du von $spell:67332 betroffen bist",
+	BurningFury			= "Zeige Warnung für $spell:66721",
+	KoralonEnrage		= "Zeige Timer für $spell:26662"
+}
+
+L:SetMiscLocalization{
+	Meteor	= "%s wirkt Meteorfäuste!"
+}
 
 -------------------------------
 --  Toravon the Ice Watcher  --
 -------------------------------
 L = DBM:GetModLocalization("Toravon")
 
-L:SetGeneralLocalization({
+L:SetGeneralLocalization{
 	name = "Toravon der Eiswächter"
-})
+}
 
-L:SetTimerLocalization({
-	ToravonEnrage	= "Berserker (Toravon)"
-})
+L:SetWarningLocalization{
+	Frostbite	= "Erfrierung auf >%s< (%d)"
+}
+
+L:SetTimerLocalization{
+	ToravonEnrage	= "Toravon-Berserker"
+}
+
+L:SetOptionLocalization{
+	Frostbite	= "Zeige Warnung für $spell:72098",
+}
+
+L:SetMiscLocalization{
+	ToravonEnrage	= "Zeige Timer für Berserker"
+}

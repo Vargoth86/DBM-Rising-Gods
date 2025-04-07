@@ -175,10 +175,6 @@ L:SetGeneralLocalization({
 	name = "송곳아귀"
 })
 
-L:SetMiscLocalization({
-	YellExplosion = "터져라, 뻥!"
-})
-
 -------------------
 -- 소환사 노보스 --
 -------------------
@@ -308,7 +304,7 @@ L:SetGeneralLocalization({
 ---------------------
 -- 장군 비야른그림 --
 ---------------------
-L = DBM:GetModLocalization("Bjarngrin")
+L = DBM:GetModLocalization("Gjarngrin")
 
 L:SetGeneralLocalization({
 	name = "장군 비야른그림"
@@ -335,7 +331,7 @@ L:SetGeneralLocalization({
 ----------
 -- 로켄 --
 ----------
-L = DBM:GetModLocalization("Loken")
+L = DBM:GetModLocalization("Kronus")
 
 L:SetGeneralLocalization({
 	name = "로켄"
@@ -442,7 +438,7 @@ L:SetOptionLocalization({
 
 L:SetMiscLocalization({
 	SplitTrigger1		= "여기엔 내가 참 많지.",
-	SplitTrigger2		= "과연 나를 감당할 수 있겠느냐!",
+	SplitTrigger2 		= "과연 나를 감당할 수 있겠느냐!",
 	MergeTrigger		= "이제 끝을 볼 때다!"
 })
 
@@ -899,7 +895,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LichKingEvent")
 
 L:SetGeneralLocalization({
-	name = "아서스에게서 도망치기"
+	name = "리치 왕 이벤트"
 })
 
 L:SetTimerLocalization({
@@ -911,7 +907,6 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	ArthasYellKill	= "발사! 발사!",
 	Ghoul			= "분노한 구울",		--creature id 36940. Not sure how to use these in function above to simplify locals though
 	Abom			= "육중한 누더기골렘",	--creature id 37069
 	WitchDoctor		= "되살아난 의술사",	--creature id 36941

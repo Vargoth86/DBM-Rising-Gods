@@ -1,8 +1,9 @@
 local mod	= DBM:NewMod("Muru", "DBM-Sunwell")
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20220518110528")
+mod:SetRevision(("$Revision: 527 $"):sub(12, -3))
 mod:SetCreatureID(25741)--25741 Muru, 25840 Entropius
+mod:SetZone()
 
 mod:RegisterCombat("combat")
 
@@ -33,7 +34,7 @@ local timerBlackHoleCD		= mod:NewCDTimer(15, 46282)
 local timerPhase			= mod:NewTimer(10, "TimerPhase", 46087, nil, nil, 6)
 local timerSingularity		= mod:NewNextTimer(3.2, 46238)
 
-local berserkTimer			= mod:NewBerserkTimer(mod:IsTimewalking() and 450 or 600)
+local berserkTimer			= mod:NewBerserkTimer(600)
 
 mod.vb.humanCount = 1
 mod.vb.voidCount = 1
@@ -59,7 +60,7 @@ local function phase2(self)
 	self:Unschedule(HumanSpawn)
 	self:Unschedule(VoidSpawn)
 	timerBlackHoleCD:Start(17)
-	if self.Options.HealthFrame then
+	if mod.Options.HealthFrame then
 		DBM.BossHealth:Clear()
 		DBM.BossHealth:AddBoss(25840, L.Entropius)
 	end

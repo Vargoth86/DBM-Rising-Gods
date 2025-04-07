@@ -138,7 +138,7 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerWaveIn	=	"Siguiente oleada (6)",
+	TimerWaveIn	= 	"Siguiente oleada (6)",
 	TimerRoleplay	= "Diálogo"
 })
 
@@ -178,10 +178,6 @@ L = DBM:GetModLocalization("Trollgore")
 
 L:SetGeneralLocalization({
 	name = "Cuernotrol"
-})
-
-L:SetMiscLocalization({
-	YellExplosion = "¡Cueh'po háse bum!"
 })
 
 ------------------------
@@ -315,7 +311,7 @@ L:SetGeneralLocalization({
 -----------------------
 -- General Bjarngrim --
 -----------------------
-L = DBM:GetModLocalization("Bjarngrin")
+L = DBM:GetModLocalization("Gjarngrin")
 
 L:SetGeneralLocalization({
 	name = "General Bjarngrim"
@@ -916,7 +912,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LichKingEvent")
 
 L:SetGeneralLocalization({
-	name = "Huida de Arthas"
+	name = "Evento del Rey Exanime"
 })
 
 L:SetTimerLocalization({
@@ -928,7 +924,6 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	ArthasYellKill	= "¡FUEGO! ¡FUEGO!",
 	Ghoul			= "Necrófago enfurecido",	--creature id 36940. Not sure how to use these in function above to simplify locals though. :\
 	Abom			= "Abominación torpe",		--creature id 37069
 	WitchDoctor		= "Médico brujo resucitado",--creature id 36941

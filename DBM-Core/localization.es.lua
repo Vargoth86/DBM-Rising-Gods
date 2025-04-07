@@ -3,15 +3,15 @@ if not DBM_CORE_L then DBM_CORE_L = {} end
 
 local L = DBM_CORE_L
 
-L.HOW_TO_USE_MOD					= "Bienvenido a "..L.DBM..". Escribe '/dbm help' para ver la lista de comandos. Para acceder a la configuración no tienes más que escribir '/dbm'."
-L.SILENT_REMINDER					= "Recordatorio: "..L.DBM.." sigue en modo silencioso."
+L.HOW_TO_USE_MOD					= "Bienvenido a DBM. Escribe '/dbm help' para ver la lista de comandos. Para acceder a la configuración no tienes más que escribir '/dbm'."
+L.SILENT_REMINDER					= "Recordatorio: DBM sigue en modo silencioso."
 
 L.LOAD_MOD_ERROR				= "Error al cargar el módulo de %s: %s"
 L.LOAD_MOD_SUCCESS			= "Módulo de '%s' cargado. Para más opciones, como alertas de sonido o notas de aviso personalizadas, escribe '/dbm'."
 L.LOAD_MOD_COMBAT			= "Carga del módulo de '%s' aplazada hasta salir de combate."
 L.LOAD_GUI_ERROR				= "No se ha podido cargar la interfaz: %s"
 L.LOAD_GUI_COMBAT			= "La interfaz no se puede cargar en combate. Se cargará la interfaz al salir de combate. Una vez cargada, podrás iniciar la interfaz en combate."
-L.BAD_LOAD					= ""..L.DBM.." ha detectado que no se ha podido cargar el módulo de esta estancia porque estás en combate. Por favor, escribe '/console reloadui' nada más salir de combate."
+L.BAD_LOAD					= "DBM ha detectado que no se ha podido cargar el módulo de esta estancia porque estás en combate. Por favor, escribe '/console reloadui' nada más salir de combate."
 L.LOAD_MOD_VER_MISMATCH		= "No se ha podido cargar el módulo de %s porque tu módulo de DBM-Core no cumple los requisitos necesarios. Se necesita una versión más reciente."
 L.LOAD_MOD_EXP_MISMATCH		= "No se ha podido cargar el módulo de %s porque está diseñado para una expansión que aún no se encuentra disponible. Este módulo se habilitará automáticamente cuando salga la nueva expansión."
 L.LOAD_MOD_TOC_MISMATCH		= "No se ha podido cargar el módulo de %s porque está diseñado para un parche de WoW que aún no se encuentra disponible. Este módulo se habilitará automáticamente cuando salga dicho parche."
@@ -25,19 +25,19 @@ L.NO_RANGE					= "No se puede usar el radar de distancia en estancias. Se proced
 L.NO_ARROW					= "No se puede usar la flecha en estancias."
 L.NO_HUD						= "No se puede usar el indicador en pantalla en estancias."
 
-L.DYNAMIC_DIFFICULTY_CLUMP	= ""..L.DBM.." ha desactivado el marco de distancia dinámico para este combate debido a la falta de información sobre las diferencias según el número de jugadores."
-L.DYNAMIC_ADD_COUNT			= ""..L.DBM.." ha desactivado los avisos de esbirros para este combate debido a la falta de información sobre las diferencias según el número de jugadores."
-L.DYNAMIC_MULTIPLE			= ""..L.DBM.." ha desactivado varias funciones para este combate debido a la falta de información sobre las diferencias según el número de jugadores."
+L.DYNAMIC_DIFFICULTY_CLUMP	= "DBM ha desactivado el marco de distancia dinámico para este combate debido a la falta de información sobre las diferencias según el número de jugadores."
+L.DYNAMIC_ADD_COUNT			= "DBM ha desactivado los avisos de esbirros para este combate debido a la falta de información sobre las diferencias según el número de jugadores."
+L.DYNAMIC_MULTIPLE			= "DBM ha desactivado varias funciones para este combate debido a la falta de información sobre las diferencias según el número de jugadores."
 
 L.LOOT_SPEC_REMINDER			= "Tu especialización es %s. Tu especialización de botín es %s."
 
-L.BIGWIGS_ICON_CONFLICT		= ""..L.DBM.." ha detectado que tienes habilitados los iconos de banda en BigWigs y "..L.DBM..". Por favor, desactívalos en uno de los dos addons para evitar conflictos con la configuración de tu líder de banda."
+L.BIGWIGS_ICON_CONFLICT		= "DBM ha detectado que tienes habilitados los iconos de banda en BigWigs y DBM. Por favor, desactívalos en uno de los dos addons para evitar conflictos con la configuración de tu líder de banda."
 
 L.MOD_AVAILABLE				= "El módulo de %s está disponible para este contenido. Puedes descargarlo a través de Curse, WoWInterface o deadlybossmods.com."
 
 L.COMBAT_STARTED				= "Encuentro de %s iniciado. ¡Buena suerte!"
 L.COMBAT_STARTED_IN_PROGRESS	= "Te has unido al encuentro de %s mientras estaba en curso. ¡Buena suerte!"
-L.GUILD_COMBAT_STARTED		= "Grupo de %s de tu hermandad ha iniciado el encuentro de %s."
+L.GUILD_COMBAT_STARTED		= "Tu hermandad ha iniciado el encuentro de %s."
 L.SCENARIO_STARTED			= "Iniciando la gesta %s. ¡Buena suerte!"
 L.SCENARIO_STARTED_IN_PROGRESS	= "Te has unido a la gesta %s mientras estaba en curso. ¡Buena suerte!"
 L.BOSS_DOWN					= "¡%s ha sido derrotado en %s!"
@@ -47,14 +47,14 @@ L.BOSS_DOWN_NR				= "¡%s ha sido derrotado en %s! ¡Es un nuevo récord! (El an
 L.RAID_DOWN					= "¡%s ha sido completado en %s!"
 L.RAID_DOWN_L				= "¡%s ha sido completado en %s! Tu récord actual es %s."
 L.RAID_DOWN_NR				= "¡%s ha sido completado en %s! ¡Es un nuevo récord! (El anterior era %s)."
-L.GUILD_BOSS_DOWN			= "¡%s ha sido derrotado por grupo de %s de tu hermandad en %s!"
+L.GUILD_BOSS_DOWN			= "¡%s ha sido derrotado por tu hermandad en %s!"
 L.SCENARIO_COMPLETE			= "¡%s ha sido completada en %s!"
 L.SCENARIO_COMPLETE_I		= "¡%s ha sido completada! La has completado %d veces en total."
 L.SCENARIO_COMPLETE_L		= "¡%s ha sido completada en %s! La última vez tardaste %s y tu récord es %s. La has completado %d veces en total."
 L.SCENARIO_COMPLETE_NR		= "¡%s ha sido completada en %s! ¡Es un nuevo récord! (El anterior era %s). La has completado %d veces en total."
 L.COMBAT_ENDED_AT			= "El encuentro de %s (%s) ha terminado en %s."
 L.COMBAT_ENDED_AT_LONG		= "El encuentro de %s (%s) ha terminado en %s. Tienes %d derrotas en total en esta dificultad."
-L.GUILD_COMBAT_ENDED_AT		= "Grupo de %s de tu hermandad ha sido derrotado en el encuentro de %s (%s) en %s."
+L.GUILD_COMBAT_ENDED_AT		= "Tu hermandad ha sido derrotada en el encuentro de %s (%s) en %s."
 L.SCENARIO_ENDED_AT			= "%s ha terminado en %s."
 L.SCENARIO_ENDED_AT_LONG		= "%s ha terminado en %s. Lo has intentado %d veces sin éxito en esta dificultad."
 L.COMBAT_STATE_RECOVERED		= "El encuentro de %s comenzó hace %s. Recalibrando temporizadores..."
@@ -62,14 +62,14 @@ L.TRANSCRIPTOR_LOG_START		= "Registro de Transcriptor iniciado."
 L.TRANSCRIPTOR_LOG_END		= "Registro de Transcriptor finalizado."
 
 L.MOVIE_SKIPPED				= "Cinemática saltada automáticamente."
-L.BONUS_SKIPPED				= ""..L.DBM.." ha cerrado automáticamente la ventana de bonus de botín. Si quieres abrirla, escribe /dbmbonusroll antes de que pasen 3 minutos."
+L.BONUS_SKIPPED				= "DBM ha cerrado automáticamente la ventana de bonus de botín. Si quieres abrirla, escribe /dbmbonusroll antes de que pasen 3 minutos."
 L.BONUS_EXPIRED				= "Has intentado usar /dbmbonusroll para abrir la ventana de bonus de botín, pero no tienes ninguna tirada pendiente."
 
 L.AFK_WARNING				= "Estás ausente y en combate (%d por cierto de salud restante); se procederá a reproducir un sonido de alerta. Sino estás ausente, quítate el estado o desactiva esta opción en 'Funciones adicionales'."
 
-L.COMBAT_STARTED_AI_TIMER	= "Mi unidad central es un procesador de red neuronal: una máquina capaz de aprender. (Este encuentro usará la nueva IA de temporizadores para generar temporizadores aproximados.)"
+L.COMBAT_STARTED_AI_TIMER	= "Mi unidad central es un procesador de red neuronal: una máquina capaz de aprender. (Este encuentro usará la nueva IA de temporizadores  para generar temporizadores aproximados.)"
 
-L.PROFILE_NOT_FOUND			= "<"..L.DBM.."> Tu perfil actual está corrupto. "..L.DBM.." cargará el perfil 'Default'."
+L.PROFILE_NOT_FOUND			= "<DBM> Tu perfil actual está corrupto. DBM cargará el perfil 'Default'."
 L.PROFILE_CREATED			= "Se ha creado el perfil '%s'."
 L.PROFILE_CREATE_ERROR		= "No se ha podido crear el perfil. El nombre del perfil no es válido."
 L.PROFILE_CREATE_ERROR_D		= "No se ha podido crear el perfil. Ya existe un perfil llamado '%s'."
@@ -78,7 +78,7 @@ L.PROFILE_APPLY_ERROR		= "No se ha podido cambiar de perfil. El perfil '%s' no e
 L.PROFILE_COPIED				= "Se ha copiado el perfil '%s'."
 L.PROFILE_COPY_ERROR			= "No se ha podido copiar el perfil. El perfil '%s' no existe."
 L.PROFILE_COPY_ERROR_SELF	= "No se puede copiar un perfil a sí mismo."
-L.PROFILE_DELETED			= "Se ha borrado el perfil '%s'. "..L.DBM.." cambiará ahora al perfil 'Default'."
+L.PROFILE_DELETED			= "Se ha borrado el perfil '%s'. DBM cambiará ahora al perfil 'Default'."
 L.PROFILE_DELETE_ERROR		= "No se ha podido borrar el perfil. El perfil '%s' no existe."
 L.PROFILE_CANNOT_DELETE		= "No se puede borrar el perfil 'Default'."
 L.MPROFILE_COPY_SUCCESS		= "Se ha copiado la configuración de módulo de %s (especialización %d)."
@@ -107,10 +107,10 @@ L.NOTESHAREERRORALREADYOPEN	= "No se puede abrir notas compartidas con el editor
 L.ALLMOD_DEFAULT_LOADED		= "Se han cargado las opciones por defecto de todos los módulos de esta estancia."
 L.ALLMOD_STATS_RESETED		= "Se han restaurado todas las estadísticas de este módulo."
 L.MOD_DEFAULT_LOADED			= "Se han cargado las opciones por defecto de este encuentro."
+L.SOUNDKIT_MIGRATION			= "Uno o varios de tus sonidos de avisos se han restaurado a la opción por defecto debido a incompatibilidades con el tipo de archivo o a una ruta incorrecta. DBM solo acepta sonidos externos que estén la carpeta de addons."
 
 L.WORLDBOSS_ENGAGED			= "Es posible que el encuentro de %s se haya iniciado en tu reino a %s de su salud máxima. (Enviado por %s.)"
 L.WORLDBOSS_DEFEATED			= "Es posible que %s haya sido derrotado en tu reino. (Enviado por %s.)"
-L.WORLDBUFF_STARTED			= "%s ha empezado en tu reino para la facción %s (Enviado por %s)."
 
 L.TIMER_FORMAT_SECS			= "%.2f |4segundo:segundos;"
 L.TIMER_FORMAT_MINS			= "%d |4minuto:minutos;"
@@ -160,36 +160,37 @@ L.WHISPER_SCENARIO_END_KILL_STATS	= "¡%s ha completado %s! Tiene %d victorias e
 L.WHISPER_SCENARIO_END_WIPE			= "%s no ha completado %s."
 L.WHISPER_SCENARIO_END_WIPE_STATS	= "%s no ha completado %s. Lo ha intentado sin éxito %d veces en total en esta dificultad."
 
-L.VERSIONCHECK_HEADER		= ""..L.DEADLY_BOSS_MODS.." - Versiones"
-L.VERSIONCHECK_ENTRY			= "%s: %s (%s) %s"--One Boss mod
-L.VERSIONCHECK_ENTRY_TWO		= "%s: %s (%s) y %s (%s)"--Two Boss mods
+L.VERSIONCHECK_HEADER		= "Deadly Boss Mods - Versiones"
+L.VERSIONCHECK_ENTRY			= "%s: %s (r%d)"--One Boss mod
+L.VERSIONCHECK_ENTRY_TWO		= "%s: %s (r%d) y %s (r%d)"--Two Boss mods
 L.VERSIONCHECK_ENTRY_NO_DBM	= "%s: Sin instalar"
-L.VERSIONCHECK_FOOTER		= "Se ha encontrado %d jugador(es) con "..L.DBM.." y %d jugador(es) con BigWigs."
-L.VERSIONCHECK_OUTDATED		= "Los siguientes %d jugadores tienen una versión desfasada de "..L.DBM..": %s"
-L.YOUR_VERSION_OUTDATED		= "Tu versión de "..L.DEADLY_BOSS_MODS.." está desfasada. Por favor, visita ".. L.UPDATEREMINDER_URL .." para descargar la última versión."
-L.VOICE_PACK_OUTDATED		= "A este paquete de voces le faltan sonidos compatibles con esta versión de "..L.DBM..". No se sustituirán los sonidos de avisos especiales que no tengan sustituto. Por favor, descarga una versión más reciente del paquete de voces o contacta con el autor para informarle de los archivos de sonido que faltan."
+L.VERSIONCHECK_FOOTER		= "Se ha encontrado %d jugador(es) con DBM."
+L.VERSIONCHECK_OUTDATED		= "Los siguientes %d jugadores tienen una versión desfasada de DBM: %s"
+L.YOUR_VERSION_OUTDATED      = "Tu versión de Deadly Boss Mods está desfasada. Por favor, visita ".. L.UPDATEREMINDER_URL .." para descargar la última versión."
+L.VOICE_PACK_OUTDATED		= "A este paquete de voces le faltan sonidos compatibles con esta versión de DBM. No se sustituirán los sonidos de avisos especiales que no tengan sustituto. Por favor, descarga una versión más reciente del paquete de voces o contacta con el autor para informarle de los archivos de sonido que faltan."
 L.VOICE_MISSING				= "Tenías seleccionado un paquete de voces que no se ha podido encontrar. Se ha restaurado tu selección a 'Ninguno'. Si crees que se trata de un error, asegúrate de que el paquete de voces se haya instalado correctamente y esté habilitado en la lista de Addons."
-L.VOICE_DISABLED				= "Tienes al menos un paquete de voces de "..L.DBM.." instalado, pero ninguno está activado. Si quieres usar un paquete de voces, asegúrate de que lo has asignado en 'Alertas de voz'. Desinstala los paquetes de voces que tengas sin usar para ocultar este mensaje."
+L.VOICE_DISABLED				= "Tienes al menos un paquete de voces de DBM instalado, pero ninguno está activado. Si quieres usar un paquete de voces, asegúrate de que lo has asignado en 'Alertas de voz'. Desinstala los paquetes de voces que tengas sin usar para ocultar este mensaje."
 L.VOICE_COUNT_MISSING		= "La voz de cuenta atrás %d está asignada a un paquete de voces que no se ha podido encontrar. Se ha restaurado a la configuración por defecto."
 L.BIG_WIGS						= "BigWigs"
 
-L.UPDATEREMINDER_HEADER			= "Tu versión de "..L.DEADLY_BOSS_MODS.." está desfasada.\nPuedes descargar la versión %s (%s) aquí: " .. L.UPDATEREMINDER_URL
-L.UPDATEREMINDER_FOOTER			= "Pulsa " .. (IsMacClient() and "Cmd-C" or "Ctrl-C") .. " para copiar el enlace de descarga en tu portapapeles."
-L.UPDATEREMINDER_FOOTER_GENERIC	= "Pulsa " .. (IsMacClient() and "Cmd-C" or "Ctrl-C") .. " para copiar el enlace en tu portapapeles."
-L.UPDATEREMINDER_DISABLE			= "AVISO: Se ha desactivado "..L.DEADLY_BOSS_MODS.." porque tu versión está demasiado desfasada. Con tal de prevenir conflictos con las versiones de otros jugadores, no se podrá volver a activar "..L.DBM.." hasta que lo actualices."
-L.UPDATEREMINDER_HOTFIX			= "Tu versión de "..L.DBM.." actual tiene errores conocidos en este encuentro. Por favor, actualiza a la última versión."
-L.UPDATEREMINDER_HOTFIX_ALPHA	= "Tu versión de "..L.DBM.." actual tiene errores conocidos en este encuentro. Estos errores serán corregidos en la próxima versión (o ya están corregidos en la última versión alfa)."
-L.UPDATEREMINDER_MAJORPATCH		= "AVISO: Se ha desactivado "..L.DEADLY_BOSS_MODS.." porque tu versión está demasiado desfasada. Como se trata de un parche de contenido importante, y con tal de prevenir conflictos con las versiones de otros jugadores, no se podrá volver a activar "..L.DBM.." hasta que lo actualices."
-L.VEM							= "AVISO: Estás ejecutando "..L.DEADLY_BOSS_MODS.." y Voice Encounter Mods a la vez. "..L.DBM.." no funciona correctamente con esta configuración, y por tanto no se ejecutará."
-L.OUTDATEDPROFILES					= "AVISO: DBM-Profiles no es compatible con esta versión de "..L.DBM..". Con tal de evitar conflictos, "..L.DBM.." no se ejecutará hasta que desactives o desinstales DBM-Profiles."
-L.OUTDATEDSPELLTIMERS				= "AVISO: DBM-SpellTimers provoca que "..L.DBM.." deje de funcionar. Desactívalo para que "..L.DBM.." funcione correctamente."
-L.OUTDATEDRLT						= "AVISO: DBM-RaidLeadTools provoca que "..L.DBM.." deje de funcionar. DBM-RaidLeadTools ya no es compatible con "..L.DBM.." y debe desactivarse para que este funcione correctamente."
-L.VICTORYSOUND					= "AVISO: DBM-VictorySound no es compatible con esta versión de "..L.DBM..". Con tal de evitar conflictos, "..L.DBM.." no se ejecutará hasta que desactives o desinstales DBM-VictorySound."
-L.DPMCORE						= "AVISO: Deadly PvP Mods ya no está en desarrollo y no es compatible con esta versión de "..L.DBM..". Con tal de evitar conflictos, "..L.DBM.." no se ejecutará hasta que borres Deadly PvP Mods."
+L.UPDATEREMINDER_HEADER			= "Tu versión de Deadly Boss Mods está desfasada.\nPuedes descargar la versión %s (r%d) aquí: "
+L.UPDATEREMINDER_FOOTER			= "Pulsa " .. (IsMacClient() and "Cmd-C" or "Ctrl-C")  ..  " para copiar el enlace de descarga en tu portapapeles."
+L.UPDATEREMINDER_FOOTER_GENERIC	= "Pulsa " .. (IsMacClient() and "Cmd-C" or "Ctrl-C")  ..  " para copiar el enlace en tu portapapeles."
+L.UPDATEREMINDER_DISABLE			= "AVISO: Se ha desactivado Deadly Boss Mods porque tu versión está demasiado desfasada. Con tal de prevenir conflictos con las versiones de otros jugadores, no se podrá volver a activar DBM hasta que lo actualices."
+L.UPDATEREMINDER_HOTFIX			= "Tu versión de DBM actual tiene errores conocidos en este encuentro. Por favor, actualiza a la última versión."
+L.UPDATEREMINDER_HOTFIX_ALPHA	= "Tu versión de DBM actual tiene errores conocidos en este encuentro. Estos errores serán corregidos en la próxima versión (o ya están corregidos en la última versión alfa)."
+L.UPDATEREMINDER_MAJORPATCH		= "AVISO: Se ha desactivado Deadly Boss Mods porque tu versión está demasiado desfasada. Como se trata de un parche de contenido importante, y con tal de prevenir conflictos con las versiones de otros jugadores, no se podrá volver a activar DBM hasta que lo actualices."
+L.VEM							= "AVISO: Estás ejecutando Deadly Boss Mods y Voice Encounter Mods a la vez. DBM no funciona correctamente con esta configuración, y por tanto no se ejecutará."
+L.OUTDATEDPROFILES					= "AVISO: DBM-Profiles no es compatible con esta versión de DBM. Con tal de evitar conflictos, DBM no se ejecutará hasta que desactives o desinstales DBM-Profiles."
+L.OUTDATEDSPELLTIMERS				= "AVISO: DBM-SpellTimers provoca que DBM deje de funcionar. Desactívalo para que DBM funcione correctamente."
+L.OUTDATEDRLT						= "AVISO: DBM-RaidLeadTools provoca que DBM deje de funcionar. DBM-RaidLeadTools ya no es compatible con DBM y debe desactivarse para que este funcione correctamente."
+L.VICTORYSOUND					= "AVISO: DBM-VictorySound no es compatible con esta versión de DBM. Con tal de evitar conflictos, DBM no se ejecutará hasta que desactives o desinstales DBM-VictorySound."
+L.DPMCORE						= "AVISO: Deadly PvP Mods ya no está en desarrollo y no es compatible con esta versión de DBM. Con tal de evitar conflictos, DBM no se ejecutará hasta que borres Deadly PvP Mods."
 L.DBMLDB							= "AVISO: DBM-LDB está ahora incluido en DBM-Core. Es recomendable que borres la carpeta 'DBM-LDB' de tu carpeta de addons."
-L.DBMLOOTREMINDER				= "AVISO: tienes instalado el módulo de terceros DBM-LootReminder. Este addon ya no es compatible con el cliente de WoW y causa conflictos con los temporizadores de "..L.DBM..". Es recomendable que lo desinstales."
-L.UPDATE_REQUIRES_RELAUNCH		= "AVISO: Esta actualización de "..L.DBM.." no funcionará correctamente hasta que reinicies el juego. Esta versión contiene nuevos archivos o cambios a los archivos .toc que no pueden recargarse mediante /reload. Es muy probable que "..L.DBM.." no funcione correctamente hasta que reinicies el juego."
-L.OUT_OF_DATE_NAG				= "Tu versión de "..L.DEADLY_BOSS_MODS.." está desfasada para este encuentro. Se recomienda que actualices "..L.DBM.." para no perderte ningún aviso, temporizador o indicador crucial para tu grupo de banda."
+L.DBMLOOTREMINDER				= "AVISO: tienes instalado el módulo de terceros DBM-LootReminder. Este addon ya no es compatible con el cliente de WoW y causa conflictos con los temporizadores de DBM. Es recomendable que lo desinstales."
+L.UPDATE_REQUIRES_RELAUNCH		= "AVISO: Esta actualización de DBM no funcionará correctamente hasta que reinicies el juego. Esta versión contiene nuevos archivos o cambios a los archivos .toc que no pueden recargarse mediante /reload. Es muy probable que DBM no funcione correctamente hasta que reinicies el juego."
+L.OUT_OF_DATE_NAG				= "Tu versión de Deadly Boss Mods está desfasada para este encuentro. Se recomienda que actualices DBM para no perderte ningún aviso, temporizador o indicador crucial para tu grupo de banda."
+L.RETAIL_ONLY					= "AVISO: esta versión de DBM está pensada para la versión actual de World of Warcraft. Desinstala DBM e instala la versión correcta para WoW Classic."
 
 L.MOVABLE_BAR				= "¡Muéveme!"
 
@@ -198,7 +199,7 @@ L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h ha compartido un temporizador d
 L.PIZZA_CONFIRM_IGNORE			= "¿Seguro que quieres ignorar los temporizadores de %s para esta sesión?"
 L.PIZZA_ERROR_USAGE				= "Uso: /dbm [broadcast] timer <seg> <texto>. <seg> debe ser mayor que 1."
 
-L.MINIMAP_TOOLTIP_HEADER		= L.DEADLY_BOSS_MODS
+L.MINIMAP_TOOLTIP_HEADER		= "Deadly Boss Mods"
 L.MINIMAP_TOOLTIP_FOOTER		= "MAYÚS-Clic izquierdo o Clic derecho para mover este botón.\nAlt-MAYÚS-Clic izquierdo para moverlo libremente."
 
 L.RANGECHECK_HEADER			= "Comprobación de distancia (%d m)"
@@ -218,8 +219,7 @@ L.RANGECHECK_OPTION_FRAMES	= "Marcos"
 L.RANGECHECK_OPTION_RADAR	= "Mostrar marco de radar"
 L.RANGECHECK_OPTION_TEXT		= "Mostrar marco de texto"
 L.RANGECHECK_OPTION_BOTH		= "Mostrar ambos"
-L.RANGERADAR_HEADER			= "Distancia: %d / Jugadores: %d"
-L.RANGERADAR_BOSS_HEADER		= "Distancia de jefe (%d m)"
+L.RANGERADAR_HEADER			= "Radar de distancia (%d m)"
 L.RANGERADAR_RHEADER			= "Distancia inversa: %d / Jugadores: %d"
 L.RANGERADAR_IN_RANGE_TEXT	= "%d a distancia (%0.1fm)"--Multi
 L.RANGECHECK_IN_RANGE_TEXT	= "%d a distancia"--Text based doesn't need (%dyd), especially since it's not very accurate to the specific yard anyways
@@ -260,7 +260,7 @@ L.SLASHCMD_HELP2				= {
 	"/dbm durability: Realiza una comprobación de durabilidad a toda la banda."
 }
 L.TIMER_USAGE	= {
-	""..L.DBM.." timer commands:",
+	"DBM timer commands:",
 	"-----------------",
 	"/dbm timer <seg> <texto>: Inicia un temporizador con texto.",
 	"/dbm ltimer <seg> <texto>: Inicia un temporizador que se repite hasta que se cancela.",
@@ -270,6 +270,53 @@ L.TIMER_USAGE	= {
 
 L.ERROR_NO_PERMISSION				= "No tienes permiso para hacer eso."
 
+--Common Locals
+L.RANDOM					= "Aleatorio"
+L.NEXT						= "Siguiente %s"
+L.COOLDOWN					= "%s TdR"
+L.UNKNOWN					= "Desconocido"--UNKNOWN which is "Unknown" (does u vs U matter?)
+L.LEFT						= "Izquierda"
+L.RIGHT						= "Derecha"
+L.BOTH						= "Ambos"
+L.BEHIND					= "Detrás"
+L.BACK						= "Atrás"--BACK
+L.SIDE						= "Lado"
+L.TOP						= "Arriba"
+L.BOTTOM					= "Abajo"
+L.MIDDLE					= "Medio"
+L.FRONT						= "Delante"
+L.EAST						= "Este"
+L.WEST						= "Oeste"
+L.NORTH						= "Norte"
+L.SOUTH						= "Sur"
+L.INTERMISSION				= "Interfase"--No blizz global for this, and will probably be used in most end tier fights with intermission phases
+L.ORB						= "Orbe"
+L.ORBS						= "Orbes"
+L.CHEST						= "Cofre"--As in Treasure 'Chest'. Not Chest as in body part.
+L.NO_DEBUFF					= "Sin %s"--For use in places like info frame where you put "Not Spellname"
+L.ALLY						= "un aliado"--Such as "Move to Ally"
+L.ALLIES					= "tus aliados"--Such as "Move to Allies"
+L.ADD						= "Esbirro"--A fight Add as in "boss spawned extra adds" - must check
+L.ADDS						= "Esbirros"
+L.BIG_ADD					= "Esbirro grande"
+L.BOSS						= "Jefe"
+L.EDGE				    	= "los bordes de la sala"
+L.FAR_AWAY					= "alejarte"
+L.BREAK_LOS					= "romper la línea de mira"
+L.RESTORE_LOS				= "la línea de mira"
+L.SAFE						= "Zona segura"
+L.NOTSAFE					= "Zona no segura"
+L.SHIELD					= "Escudo"
+L.PILLAR					= "Pilar"
+L.INCOMING					= "%s en breve"
+L.BOSSTOGETHER				= "Jefes juntos"
+L.BOSSAPART					= "Jefes separados"
+--Common Locals end
+
+--Retail Globals
+L.RAID_INFO_WORLD_BOSS 		= "Jefe de mundo"
+--Retail Globals end
+
 L.BREAK_USAGE				= "El temporizador de descanso no puede durar más de 60 minutos. Asegúrate de que has escrito el tiempo en minutos y no en segundos."
 L.BREAK_START				= "El descanso comienza ahora. ¡Tienes %s! (Enviado por %s)"
 L.BREAK_MIN					= "¡El descanso termina en %s minuto(s)!"
@@ -277,8 +324,7 @@ L.BREAK_SEC					= "¡El descanso termina en %s segundo(s)!"
 L.TIMER_BREAK				= "¡Toca descanso!"
 L.ANNOUNCE_BREAK_OVER		= "El descanso ha terminado."
 
-L.TIMER_PULL				= "Iniciando en"
-L.ANNOUNCE_PULL_MODE		= "Dificultad: %s"
+L.TIMER_PULL					= "Iniciando en"
 L.ANNOUNCE_PULL				= "Iniciando en %d s (iniciado por %s)"
 L.ANNOUNCE_PULL_NOW			= "¡Iniciad ahora!"
 L.ANNOUNCE_PULL_TARGET		= "Llamando a %s en %d s (iniciado por %s)"
@@ -292,15 +338,13 @@ L.ACHIEVEMENT_TIMER_SPEED_KILL = "Logro"
 -- Auto-generated Warning Localizations
 L.AUTO_ANNOUNCE_TEXTS.you		= "%s en ti"
 L.AUTO_ANNOUNCE_TEXTS.target		= "%s en >%%s<"
-L.AUTO_ANNOUNCE_TEXTS.targetdistance	= "%s en >%%s< (%%d yd)"
 L.AUTO_ANNOUNCE_TEXTS.targetsource	= "%s de >%%s< en >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.targetcount	= "%s (%%s) en >%%s<"
-L.AUTO_ANNOUNCE_TEXTS.targetcountdistance	= "%s (%%s) en >%%s< (%%d yd)"
 L.AUTO_ANNOUNCE_TEXTS.spell		= "%s"
-L.AUTO_ANNOUNCE_TEXTS.ends		= "%s ha terminado"
+L.AUTO_ANNOUNCE_TEXTS.ends 		= "%s ha terminado"
 L.AUTO_ANNOUNCE_TEXTS.endtarget	= "%s ha terminado en >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.fades		= "%s ha terminado"
-L.AUTO_ANNOUNCE_TEXTS.addsleft	= "%s restantes: %%d"
+L.AUTO_ANNOUNCE_TEXTS.adds		= "%s restantes: %%d"
 L.AUTO_ANNOUNCE_TEXTS.cast		= "Lanzando %s en %.1f s"
 L.AUTO_ANNOUNCE_TEXTS.soon		= "%s en breve"
 L.AUTO_ANNOUNCE_TEXTS.sooncount	= "%s (%%s) en breve"
@@ -316,20 +360,18 @@ L.AUTO_ANNOUNCE_TEXTS.moveto		= "%s - ¡ve a >%%s<!"
 local prewarnOption = "Mostrar aviso previo para $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.you			= "Anunciar que te afecta $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.target		= "Anunciar objetivos de $spell:%s"
-L.AUTO_ANNOUNCE_OPTIONS.targetdistance	= "Anunciar objetivos de $spell:%s (con distancia)"
 L.AUTO_ANNOUNCE_OPTIONS.targetsource	= "Anunciar objetivos de $spell:%s (y quién lo lanza)"
 L.AUTO_ANNOUNCE_OPTIONS.targetcount	= "Anunciar objetivos de $spell:%s (con contador)"
-L.AUTO_ANNOUNCE_OPTIONS.targetcountdistance	= "Anunciar objetivos de $spell:%s (con contador y distancia)"
 L.AUTO_ANNOUNCE_OPTIONS.spell		= "Mostrar aviso para $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.ends			= "Mostrar aviso cuando termine $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.endtarget	= "Mostrar aviso cuando termine $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.fades		= "Mostrar aviso cuando expire $spell:%s"
-L.AUTO_ANNOUNCE_OPTIONS.addsleft		= "Anunciar el número de $spell:%s restantes"
+L.AUTO_ANNOUNCE_OPTIONS.adds			= "Anunciar el número de $spell:%s restantes"
 L.AUTO_ANNOUNCE_OPTIONS.cast			= "Mostrar aviso cuando se esté lanzando $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.soon			= prewarnOption
 L.AUTO_ANNOUNCE_OPTIONS.sooncount	= prewarnOption
 L.AUTO_ANNOUNCE_OPTIONS.countdown		= "Mostrar cuenta atrás para $spell:%s"
-L.AUTO_ANNOUNCE_OPTIONS.prewarn		= prewarnOption
+L.AUTO_ANNOUNCE_OPTIONS.prewarn 		= prewarnOption
 L.AUTO_ANNOUNCE_OPTIONS.bait			= "Mostrar aviso previso para posicionar $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.stage		= "Anunciar cambio a Fase %s"
 L.AUTO_ANNOUNCE_OPTIONS.stagechange	= "Anunciar cambios de fase"
@@ -382,29 +424,29 @@ L.AUTO_SPEC_WARN_TEXTS.addscustom	= "Esbirros en breve - %%s"
 L.AUTO_SPEC_WARN_TEXTS.targetchange	= "¡cambia de objetivo a %%s!"
 
 -- Auto-generated Special Warning Localizations
-L.AUTO_SPEC_WARN_OPTIONS.spell			= "Mostrar aviso especial para $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.ends			= "Mostrar aviso especial cuando termine $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.fades			= "Mostrar aviso especial cuando expire $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.soon			= "Mostrar aviso previo especial para $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.spell 			= "Mostrar aviso especial para $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.ends 			= "Mostrar aviso especial cuando termine $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.fades 			= "Mostrar aviso especial cuando expire $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.soon 			= "Mostrar aviso previo especial para $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.sooncount		= "Mostrar aviso previo especial (con contador) para $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.bait			= "Mostrar aviso previo especial para posicionar $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.prewarn		= "Mostrar aviso previo especial %s s antes de $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.dispel			= "Mostrar aviso especial para disipar $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.prewarn 		= "Mostrar aviso previo especial %s s antes de $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.dispel 			= "Mostrar aviso especial para disipar $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.interrupt		= "Mostrar aviso especial para interrumpir $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.interruptcount	= "Mostrar aviso especial (con contador) para interrumpir $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.you			= "Mostrar aviso especial cuando te afecte $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.you 			= "Mostrar aviso especial cuando te afecte $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.youcount		= "Mostrar aviso especial (con contador) cuando te afecte $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.youpos			= "Mostrar aviso especial (con posición) cuando te afecte $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.soakpos			= "Mostrar aviso especial (con posición) para acompañar a los jugadores afectados por $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.target			= "Mostrar aviso especial cuando $spell:%s afecte a un jugador"
-L.AUTO_SPEC_WARN_OPTIONS.targetcount	= "Mostrar aviso especial (con contador) cuando $spell:%s afecte a un jugador"
-L.AUTO_SPEC_WARN_OPTIONS.defensive		= "Mostrar aviso especial para usar mitigaciones para $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.taunt			= "Mostrar aviso especial para provocar cuando $spell:%s afecte al otro tanque"
-L.AUTO_SPEC_WARN_OPTIONS.close			= "Mostrar aviso especial cuando $spell:%s afecte a un jugador cercano"
-L.AUTO_SPEC_WARN_OPTIONS.move			= "Mostrar aviso especial para salir de $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.keepmove		= "Mostrar aviso especial para no dejar de moverte durante $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.stopmove		= "Mostrar aviso especial para dejar de moverte durante $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.dodge			= "Mostrar aviso especial para esquivar $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.target 			= "Mostrar aviso especial cuando $spell:%s afecte a un jugador"
+L.AUTO_SPEC_WARN_OPTIONS.targetcount 	= "Mostrar aviso especial (con contador) cuando $spell:%s afecte a un jugador"
+L.AUTO_SPEC_WARN_OPTIONS.defensive 		= "Mostrar aviso especial para usar mitigaciones para $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.taunt 			= "Mostrar aviso especial para provocar cuando $spell:%s afecte al otro tanque"
+L.AUTO_SPEC_WARN_OPTIONS.close 			= "Mostrar aviso especial cuando $spell:%s afecte a un jugador cercano"
+L.AUTO_SPEC_WARN_OPTIONS.move 			= "Mostrar aviso especial para salir de $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.keepmove 		= "Mostrar aviso especial para no dejar de moverte durante $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.stopmove 		= "Mostrar aviso especial para dejar de moverte durante $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.dodge 			= "Mostrar aviso especial para esquivar $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.dodgecount		= "Mostrar aviso especial (con contador) para esquivar $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.dodgeloc		= "Mostrar aviso especial (con ubicación) para esquivar $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.moveaway		= "Mostrar aviso especial para alejarse de los demás jugadores durante $spell:%s"
@@ -412,15 +454,15 @@ L.AUTO_SPEC_WARN_OPTIONS.moveawaycount	= "Mostrar aviso especial (con contador) 
 L.AUTO_SPEC_WARN_OPTIONS.moveto			= "Mostrar aviso especial para juntarse con alguien o ir a algún sitio para $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.soak			= "Mostrar aviso especial para interceptar $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.jump			= "Mostrar aviso especial para saltar para $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.run			= "Mostrar aviso especial para huir de $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.cast			= "Mostrar aviso especial para dejar de canalizar durante $spell:%s"--Spell Interrupt
+L.AUTO_SPEC_WARN_OPTIONS.run 			= "Mostrar aviso especial para huir de $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.cast 			= "Mostrar aviso especial para dejar de canalizar durante $spell:%s"--Spell Interrupt
 L.AUTO_SPEC_WARN_OPTIONS.lookaway		= "Mostrar aviso especial para darte la vuelta para $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.reflect		= "Mostrar aviso especial para dejar de atacar durante $spell:%s"--Spell Reflect
-L.AUTO_SPEC_WARN_OPTIONS.count			= "Mostrar aviso especial (con contador) para $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.stack			= "Mostrar aviso especial cuando tengas %d ó más acumulaciones de $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.reflect 		= "Mostrar aviso especial para dejar de atacar durante $spell:%s"--Spell Reflect
+L.AUTO_SPEC_WARN_OPTIONS.count 			= "Mostrar aviso especial (con contador) para $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.stack 			= "Mostrar aviso especial cuando tengas %d ó más acumulaciones de $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.switch			= "Mostrar aviso especial para cambiar de objetivo a $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.switchcount		= "Mostrar aviso especial (con contador) para cambiar de objetivo a $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.gtfo			= "Mostrar aviso especial para apartarte de áreas de daño en el suelo"
+L.AUTO_SPEC_WARN_OPTIONS.gtfo 			= "Mostrar aviso especial para apartarte de áreas de daño en el suelo"
 L.AUTO_SPEC_WARN_OPTIONS.adds			= "Mostrar aviso especial para cambiar de objetivo cuando falte poco para que aparezcan esbirros"
 L.AUTO_SPEC_WARN_OPTIONS.addscustom		= "Mostrar aviso especial cuando falte poco para que aparezcan esbirros"
 L.AUTO_SPEC_WARN_OPTIONS.targetchange	= "Mostrar aviso especial para cambiar a objetivos prioritarios"
@@ -436,7 +478,6 @@ L.AUTO_TIMER_TEXTS.castsourceshort		= "%s: %%s "--Resolve short timer conflict w
 L.AUTO_TIMER_TEXTS.active		= "%s termina"--Buff/Debuff/event on boss
 L.AUTO_TIMER_TEXTS.fades		= "%s expira"--Buff/Debuff on players
 L.AUTO_TIMER_TEXTS.ai			= "IA de %s"
-
 L.AUTO_TIMER_TEXTS.cd			= "%s TdR"
 L.AUTO_TIMER_TEXTS.cdshort		= "~%s"
 L.AUTO_TIMER_TEXTS.cdcount		= "%s (%%s) TdR"
@@ -445,7 +486,6 @@ L.AUTO_TIMER_TEXTS.cdsource		= "%s TdR: >%%s<"
 L.AUTO_TIMER_TEXTS.cdsourceshort	= "~%s: >%%s<"
 L.AUTO_TIMER_TEXTS.cdspecial	= "Facultad especial TdR"
 L.AUTO_TIMER_TEXTS.cdspecialshort		= "~Facultad especial"
-
 L.AUTO_TIMER_TEXTS.next			= "Siguiente %s"
 L.AUTO_TIMER_TEXTS.nextshort	= "%s"
 L.AUTO_TIMER_TEXTS.nextcount	= "Siguiente %s (%%s)"
@@ -454,12 +494,6 @@ L.AUTO_TIMER_TEXTS.nextsource	= "Siguiente %s: %%s"
 L.AUTO_TIMER_TEXTS.nextsourceshort		= "%s: %%s"
 L.AUTO_TIMER_TEXTS.nextspecial	= "Siguiente facultad especial"
 L.AUTO_TIMER_TEXTS.nextspecialshort		= "Facultad especial"
-
-L.AUTO_TIMER_TEXTS.varcount		= "%s (%%s)"
-L.AUTO_TIMER_TEXTS.varsource	= "%s: >%%s<"--Now same as next, as the ~ was moved to timer number -- OPTIONAL
-L.AUTO_TIMER_TEXTS.varspecial	= "Facultad especial"--Now same as next, as the ~ was moved to timer number
-L.AUTO_TIMER_TEXTS.varcombo		= "%%1$s + %%2$s"--Now same as next, as the ~ was moved to timer number -- OPTIONAL
-
 L.AUTO_TIMER_TEXTS.achievement	= "Logro: %s"
 L.AUTO_TIMER_TEXTS.stage		= "Siguiente fase"
 L.AUTO_TIMER_TEXTS.stageshort	= "Fase"
@@ -469,41 +503,29 @@ L.AUTO_TIMER_TEXTS.addscustom	= "Esbirros (%%s)"
 L.AUTO_TIMER_TEXTS.addscustomshort		= "Esbirros (%%s)"
 L.AUTO_TIMER_TEXTS.roleplay		= "Diálogo"
 
-L.AUTO_TIMER_OPTIONS.target		= "Mostrar temporizador para la duración del perjuicio de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.cast		= "Mostrar temporizador para el lanzamiento de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.castcount	= "Mostrar temporizador (con contador) para el lanzamiento de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.castsource	= "Mostrar temporizador (y quién lo lanza) para el lanzamiento de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.active		= "Mostrar temporizador para la duración de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.fades		= "Mostrar temporizador para el tiempo restante del perjuicio de $spell:%s en los jugadores (%ss)"
-L.AUTO_TIMER_OPTIONS.ai			= "Mostrar temporizador inteligente para el tiempo de reutilización de $spell:%s (%ss)"
+L.AUTO_TIMER_OPTIONS.target		= "Mostrar temporizador para la duración del perjuicio de $spell:%s (%ds)"
+L.AUTO_TIMER_OPTIONS.cast		= "Mostrar temporizador para el lanzamiento de $spell:%s (%ds)"
+L.AUTO_TIMER_OPTIONS.castcount	= "Mostrar temporizador (con contador) para el lanzamiento de $spell:%s (%ds)"
+L.AUTO_TIMER_OPTIONS.castsource	= "Mostrar temporizador (y quién lo lanza) para el lanzamiento de $spell:%s (%ds)"
+L.AUTO_TIMER_OPTIONS.active		= "Mostrar temporizador para la duración de $spell:%s (%ds)"
+L.AUTO_TIMER_OPTIONS.fades		= "Mostrar temporizador para el tiempo restante del perjuicio de $spell:%s en los jugadores (%ds)"
+L.AUTO_TIMER_OPTIONS.ai			= "Mostrar temporizador inteligente para el tiempo de reutilización de $spell:%s (%ds)"
+L.AUTO_TIMER_OPTIONS.cd			= "Mostrar temporizador para el tiempo de reutilización de $spell:%s (%ds)"
+L.AUTO_TIMER_OPTIONS.cdcount	= "Mostrar temporizador (con contador) para el tiempo de reutilización de $spell:%s (%ds)"
+L.AUTO_TIMER_OPTIONS.cdsource	= "Mostrar temporizador (y quién lo lanza) para el tiempo de reutilización de $spell:%s (%ds)"
+L.AUTO_TIMER_OPTIONS.cdspecial	= "Mostrar temporizador para el tiempo de reutilización de 'Facultad especial'. (%ds)"
+L.AUTO_TIMER_OPTIONS.next		= "Mostrar temporizador para el siguiente $spell:%s (%ds)"
+L.AUTO_TIMER_OPTIONS.nextcount	= "Mostrar temporizador (con contador) para el siguiente $spell:%s (%ds)"
+L.AUTO_TIMER_OPTIONS.nextsource	= "Mostrar temporizador (y quién lo lanza) para el siguiente $spell:%s (%ds)"
+L.AUTO_TIMER_OPTIONS.nextspecial	= "Mostrar temporizador para la siguiente 'Facultad especial'. (%ds)"
+L.AUTO_TIMER_OPTIONS.achievement	= "Mostrar temporizador para el logro %s (%ds)"
+L.AUTO_TIMER_OPTIONS.stage		= "Mostrar temporizador para la siguiente fase (%ds)"
+L.AUTO_TIMER_OPTIONS.adds		= "Mostrar temporizador para la siguiente aparición de esbirros (%ds)"
+L.AUTO_TIMER_OPTIONS.addscustom	= "Mostrar temporizador para la siguiente aparición de esbirros (%ds)"
+L.AUTO_TIMER_OPTIONS.roleplay	= "Mostrar temporizador para la duración del diálogo (%ds)"
 
-L.AUTO_TIMER_OPTIONS.cd			= "Mostrar temporizador para el tiempo de reutilización de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.cdcount	= "Mostrar temporizador (con contador) para el tiempo de reutilización de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.cdsource	= "Mostrar temporizador (y quién lo lanza) para el tiempo de reutilización de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.cdspecial	= "Mostrar temporizador para el tiempo de reutilización de 'Facultad especial'. (%ss)"
-
-L.AUTO_TIMER_OPTIONS.next		= "Mostrar temporizador para el siguiente $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.nextcount	= "Mostrar temporizador (con contador) para el siguiente $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.nextsource	= "Mostrar temporizador (y quién lo lanza) para el siguiente $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.nextspecial	= "Mostrar temporizador para la siguiente 'Facultad especial'. (%ss)"
-
-L.AUTO_TIMER_OPTIONS.var				= "Mostrar temporizador (con variación) para el tiempo de reutilización de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.varcount			= "Mostrar temporizador (con contador y variación) para el tiempo de reutilización de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.varnp				= "Mostrar solo el temporizador en la placa de nombre (con variación) para el tiempo de reutilización de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.varpnp				= "Mostrar solo el temporizador prioritario en la placa de nombre (con variación) para el tiempo de reutilización de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.varsource			= "Mostrar temporizador (con variación y quién lo lanza) para el tiempo de reutilización de $spell:%s (%ss)"
-L.AUTO_TIMER_OPTIONS.varspecial			= "Mostrar temporizador (con variación) para el tiempo de reutilización de facultad especial (%ss)"
-L.AUTO_TIMER_OPTIONS.varcombo			= "Mostrar temporizador (con variación) para el tiempo de reutilización de combo de facultades (%ss)"
-
-L.AUTO_TIMER_OPTIONS.achievement	= "Mostrar temporizador para el logro %s (%ss)"
-L.AUTO_TIMER_OPTIONS.stage		= "Mostrar temporizador para la siguiente fase (%ss)"
-L.AUTO_TIMER_OPTIONS.adds		= "Mostrar temporizador para la siguiente aparición de esbirros (%ss)"
-L.AUTO_TIMER_OPTIONS.addscustom	= "Mostrar temporizador para la siguiente aparición de esbirros (%ss)"
-L.AUTO_TIMER_OPTIONS.roleplay	= "Mostrar temporizador para la duración del diálogo (%ss)"
-
-L.AUTO_ICONS_OPTION_TARGETS			= "Poner iconos en los objetivos de $spell:%s"
-L.AUTO_ICONS_OPTION_NPCS		= "Poner iconos en $spell:%s"
-L.AUTO_ICONS_OPTION_CONFLICT		= " (Puede entrar en conflicto con otras opciones)"
+L.AUTO_ICONS_OPTION_TEXT			= "Poner iconos en los objetivos de $spell:%s"
+L.AUTO_ICONS_OPTION_TEXT2		= "Poner iconos en $spell:%s"
 L.AUTO_ARROW_OPTION_TEXT			= "Mostrar flecha indicadora para juntarse con los objetivos afectados por $spell:%s"
 L.AUTO_ARROW_OPTION_TEXT2		= "Mostrar flecha indicadora para alejarse de los objetivos afectados por $spell:%s"
 L.AUTO_ARROW_OPTION_TEXT3		= "Mostrar flecha indicadora para ir a una ubicación específica para $spell:%s"
@@ -523,7 +545,7 @@ L.AUTO_YELL_ANNOUNCE_TEXT.count		= "¡%s en " .. UnitName("player") .. "! (%%d)"
 L.AUTO_YELL_ANNOUNCE_TEXT.fade		= "%s expirando en %%d"
 L.AUTO_YELL_ANNOUNCE_TEXT.shortfade		= "%%d"
 L.AUTO_YELL_ANNOUNCE_TEXT.iconfade		= "{rt%%2$d}%%1$d"
-L.AUTO_YELL_ANNOUNCE_TEXT.position	= "%s %%s en {rt%%d}"..UnitName("player").."{rt%%d}"
+L.AUTO_YELL_ANNOUNCE_TEXT.position 	= "%s %%s en {rt%%d}"..UnitName("player").."{rt%%d}"
 L.AUTO_YELL_ANNOUNCE_TEXT.combo			= "%s y %%s"--Spell name (from option, plus spellname given in arg)
 L.AUTO_YELL_CUSTOM_FADE			= "%s ha expirado"
 L.AUTO_HUD_OPTION_TEXT			= "Mostrar indicador en pantalla para $spell:%s"
@@ -558,7 +580,7 @@ L.HUD_INVALID_SELF			= "No puedes usarte a ti mismo como objetivo."
 L.HUD_INVALID_ICON			= "No se puede usar el tipo icono en un objetivo sin icono."
 L.HUD_SUCCESS				= "Indicador en pantalla realizado con éxito. Expirará en %s o al escribir '/dbm hud hide'."
 L.HUD_USAGE	= {
-	"Uso de "..L.DBM.."-HudMap:",
+	"Uso de DBM-HudMap:",
 	"-----------------",
 	"/dbm hud <tipo> <objetivo> <seg>: Crea un indicador en pantalla que apunta al jugador objetivo durante el tiempo designado.",
 	"Tipos válidos: arrow, dot, red, blue, green, yellow, icon (requiere un objetivo con icono de banda)",
@@ -571,7 +593,7 @@ L.ARROW_MOVABLE					= "Flecha desplazable"
 L.ARROW_WAY_USAGE					= "/dway <x> <y>: Crea una flecha que apunta a una ubicación designada mediante coordenadas locales."
 L.ARROW_WAY_SUCCESS				= "Para ocultar la flecha, escribe '/dbm arrow hide' o alcanza la ubicación designada."
 L.ARROW_ERROR_USAGE	= {
-	"Uso de "..L.DBM.."-Arrow:",
+	"Uso de DBM-Arrow:",
 	"-----------------",
 	"/dbm arrow <x> <y>: Crea una flecha que apunta a una ubicación específica (merdiante coordenadas de mundo).",
 	"/dbm arrow map <x> <y>: Crea una flecha que apunta a una ubicación específica (mediante coordenadas de zona).",
@@ -596,24 +618,9 @@ L.DUR_ENTRY					= "%s: Durabilidad [%d%%] / Piezas rotas [%s]"
 L.LAG_FOOTER					= "Sin respuesta: %s"
 
 --LDB
-L.LDB_TOOLTIP_HELP1	= "Clic izquierdo para abrir "..L.DBM..""
+L.LDB_TOOLTIP_HELP1	= "Clic izquierdo para abrir DBM"
 L.LDB_TOOLTIP_HELP2	= "Clic derecho para el menú de configuración"
-L.SILENTMODE_IS		= "El modo silencioso es "
 
-L.WORLD_BUFFS.hordeOny			= "Miembros de la Horda, ciudadanos de Orgrimmar, vengan y reúnanse para homenajear un hecho heroico"
-L.WORLD_BUFFS.allianceOny		= "Ciudadanos y aliados de Ventormenta, en el día de hoy, hemos hecho historia."
-L.WORLD_BUFFS.hordeNef			= "¡NEFARIAN HA SIDO ASESINADO! Ciudadanos de Orgrimmar"
-L.WORLD_BUFFS.allianceNef		= "¡Ciudadanos de la Alianza, el Señor de Roca Negra está muerto!"
-L.WORLD_BUFFS.zgHeart			= "Ahora, solo un paso más para poder librarnos de la amenaza del Cazador de Almas"
-L.WORLD_BUFFS.zgHeartBooty		= "¡El Dios de la Sangre, el Cazador de Almas, ha sido derrotado! ¡Ya no corremos peligro!"
-L.WORLD_BUFFS.zgHeartYojamba	= "Comiencen el ritual, sirvientes. ¡Debemos desterrar el corazón de Hakkar al vacío!"
-L.WORLD_BUFFS.rendHead			= "¡El falso Jefe de Guerra Rend Puño Negro ha caído!"
+L.LDB_LOAD_MODS		= "Cargar módulo"
 
---Retail Globals
-L.RAID_INFO_WORLD_BOSS		= "Jefe de mundo"
-L.SCENARIO_STAGE			= "Fase %d"
-L.SPECIALIZATION			= "Especialización" -- ID: 22433
--- EJ
-L.HARD_MODE					= "Modo difícil" -- 17220
-L.BOSS_YOU_DEFEATED			= "Has derrotado a" -- 25559
-L.BOSS_KILL_SUBTITLE		= "ha caído" -- 25560
+L.LDB_ENABLE_BOSS_MOD	= "Habilitar módulo"

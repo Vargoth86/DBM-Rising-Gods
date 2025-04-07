@@ -173,10 +173,6 @@ L:SetGeneralLocalization({
 	name = "Trollgore"
 })
 
-L:SetMiscLocalization({
-	YellExplosion = "Corpse go boom!"
-})
-
 --------------------------
 --  Novos the Summoner  --
 --------------------------
@@ -306,7 +302,7 @@ L:SetGeneralLocalization({
 --------------------------
 --  General Bjarngrim  --
 -------------------------
-L = DBM:GetModLocalization("Bjarngrin")
+L = DBM:GetModLocalization("Gjarngrin")
 
 L:SetGeneralLocalization({
 	name = "General Bjarngrim"
@@ -333,7 +329,7 @@ L:SetGeneralLocalization({
 -------------
 --  Loken  --
 -------------
-L = DBM:GetModLocalization("Loken")
+L = DBM:GetModLocalization("Kronus")
 
 L:SetGeneralLocalization({
 	name = "Loken"
@@ -771,6 +767,10 @@ L:SetGeneralLocalization({
 	name = "Eadric the Pure"
 })
 
+L:SetOptionLocalization({
+	SetIconOnHammerTarget	= DBM_CORE_L.AUTO_ICONS_OPTION_TEXT:format(66940)
+})
+
 L:SetMiscLocalization({
 	YellCombatEnd	= "I yield! I submit. Excellent work. May I run away now?"
 })
@@ -796,7 +796,8 @@ L:SetGeneralLocalization({
 })
 
 L:SetOptionLocalization({
-	AchievementCheck			= "Announce 'Doesn't Go to Eleven' achievement warnings to party"
+	AchievementCheck			= "Announce 'Doesn't Go to Eleven' achievement warnings to party",
+	SetIconOnSaroniteRockTarget	= DBM_CORE_L.AUTO_ICONS_OPTION_TEXT:format(70851)
 })
 
 L:SetMiscLocalization({
@@ -897,7 +898,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LichKingEvent")
 
 L:SetGeneralLocalization({
-	name = "Escape from Arthas"
+	name = "Lich King event"
 })
 
 L:SetWarningLocalization({
@@ -913,7 +914,6 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	ArthasYellKill	= "FIRE! FIRE!",
 	Ghoul			= "Raging Ghoul",			--creature id 36940. Not sure how to use these in function above to simplify locals though. :\
 	Abom			= "Lumbering Abomination",	--creature id 37069
 	WitchDoctor		= "Risen Witch Doctor",		--creature id 36941

@@ -11,10 +11,6 @@ L:SetGeneralLocalization({
 	name = "Shadron"
 })
 
-L:SetMiscLocalization({
-	YellShadronPull	= "I fear nothing! Least of all you!",
-})
-
 ----------------
 --  Tenebron  --
 ----------------
@@ -24,10 +20,6 @@ L:SetGeneralLocalization({
 	name = "Tenebron"
 })
 
-L:SetMiscLocalization({
-	YellTenebronPull	= "You have no place here! Your place... is among the departed!",
-})
-
 ----------------
 --  Vesperon  --
 ----------------
@@ -35,10 +27,6 @@ L = DBM:GetModLocalization("Vesperon")
 
 L:SetGeneralLocalization({
 	name = "Vesperon"
-})
-
-L:SetMiscLocalization({
-	YellVesperonPull	= "You pose no threat, lesser beings! Give me your worst!",
 })
 
 ------------------
@@ -55,47 +43,33 @@ L:SetWarningLocalization({
 	WarningShadron			= "Shadron incoming",
 	WarningVesperon			= "Vesperon incoming",
 	WarningFireWall			= "Fire Wall",
-	WarningWhelpsSoon		= "Tenebron Whelps Soon",
-	WarningPortalSoon		= "Shadron Portal Soon",
-	WarningReflectSoon		= "Vesperon Reflect Soon",
 	WarningVesperonPortal	= "Vesperon's portal",
 	WarningTenebronPortal	= "Tenebron's portal",
 	WarningShadronPortal	= "Shadron's portal"
 })
 
 L:SetTimerLocalization({
-	TimerTenebron			= "Tenebron arrives",
-	TimerShadron			= "Shadron arrives",
-	TimerVesperon			= "Vesperon arrives",
-	TimerTenebronWhelps		= "Tenebron Whelps",
-	TimerShadronPortal		= "Shadron Portal",
-	TimerVesperonPortal		= "Vesperon Portal",
-	TimerVesperonPortal2	= "Vesperon Portal 2"
+	TimerTenebron	= "Tenebron arrives",
+	TimerShadron	= "Shadron arrives",
+	TimerVesperon	= "Vesperon arrives"
 })
 
 L:SetOptionLocalization({
+	PlaySoundOnFireWall		= "Play sound on Fire Wall",
 	AnnounceFails			= "Post player fails for Fire Wall and Shadow Fissure to raid chat<br/>(requires announce to be enabled and leader/promoted status)",
 	TimerTenebron			= "Show timer for Tenebron's arrival",
 	TimerShadron			= "Show timer for Shadron's arrival",
 	TimerVesperon			= "Show timer for Vesperon's arrival",
-	TimerTenebronWhelps		= "Show timer for Tenebron Whelps",
-	TimerShadronPortal		= "Show timer for Shadron Portal",
-	TimerVesperonPortal		= "Show timer for Vesperon Portal",
-	TimerVesperonPortal2	= "Show timer for Vesperon Portal 2",
 	WarningFireWall			= "Show special warning for Fire Wall",
 	WarningTenebron			= "Announce Tenebron incoming",
 	WarningShadron			= "Announce Shadron incoming",
 	WarningVesperon			= "Announce Vesperon incoming",
-	WarningWhelpsSoon		= "Announce Tenebron Whelps soon",
-	WarningPortalSoon		= "Announce Shadron Portal soon",
-	WarningReflectSoon		= "Announce Vesperon Reflect soon",
 	WarningTenebronPortal	= "Show special warning for Tenebron's portal",
 	WarningShadronPortal	= "Show special warning for Shadron's portal",
 	WarningVesperonPortal	= "Show special warning for Vesperon's portal"
 })
 
 L:SetMiscLocalization({
-	YellSarthPull	= "It is my charge to watch over these eggs. I will see you burn before any harm comes to them!",
 	Wall			= "The lava surrounding %s churns!",
 	Portal			= "%s begins to open a Twilight Portal!",
 	NameTenebron	= "Tenebron",
@@ -123,7 +97,9 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	WarningSplitSoon	= "Show pre-warning for Split"
+	WarningSplitSoon	= "Show pre-warning for Split",
+	RangeFrame			= "Show range frame (12 yards)",
+	SetIconOnBrand		= DBM_CORE_L.AUTO_ICONS_OPTION_TEXT:format(74505)
 })
 
 -------------------------
@@ -133,6 +109,11 @@ L = DBM:GetModLocalization("Saviana")
 
 L:SetGeneralLocalization({
 	name = "Saviana Ragefire"
+})
+
+L:SetOptionLocalization({
+	RangeFrame				= "Show range frame (10 yards)",
+	beaconIcon				= DBM_CORE_L.AUTO_ICONS_OPTION_TEXT:format(74453)
 })
 
 --------------------------
@@ -179,20 +160,14 @@ L:SetWarningLocalization({
 	TwilightCutterCast	= "Casting Twilight Cutter: 5 sec"
 })
 
-L:SetTimerLocalization({
-	TimerCutterSpawn	= "Twilight Cutter beam"
-})
-
 L:SetOptionLocalization({
 	TwilightCutterCast		= "Show warning when $spell:74769 is being cast",
 	AnnounceAlternatePhase	= "Show warnings/timers for phase you aren't in as well",
-	SetIconOnConsumption	= "Set icons on $spell:74562 or $spell:74792 targets",--So we can use single functions for both versions of spell.
-	TimerCutterSpawn		= "Show timer until next $spell:74769 is beamed (disables Next and Cast timers)"
+	SetIconOnConsumption	= "Set icons on $spell:74562 or $spell:74792 targets"--So we can use single functions for both versions of spell.
 })
 
 L:SetMiscLocalization({
 	Halion					= "Halion",
-	PhysicalRealm			= "Physical Realm",
 	MeteorCast				= "The heavens burn!",
 	Phase2					= "You will find only suffering within the realm of twilight! Enter if you dare!",
 	Phase3					= "I am the light and the darkness! Cower, mortals, before the herald of Deathwing!",

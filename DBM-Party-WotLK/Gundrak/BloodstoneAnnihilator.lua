@@ -1,10 +1,9 @@
 local mod	= DBM:NewMod("BloodstoneAnnihilator", "DBM-Party-WotLK", 5)
 local L		= mod:GetLocalizedStrings()
 
-mod.statTypes = "normal,heroic,mythic"
-
-mod:SetRevision("20221004111800")
+mod:SetRevision(("$Revision: 2250 $"):sub(12, -3))
 mod:SetCreatureID(29307)
+--mod:SetZone()
 
 mod:RegisterCombat("combat")
 
@@ -13,10 +12,10 @@ mod:RegisterEventsInCombat(
 	"SPELL_PERIODIC_DAMAGE 59451"
 )
 
-local warningStone			= mod:NewSpellAnnounce(54878, 3)
-local warningElemental		= mod:NewSpellAnnounce(54850, 3)
+local warningElemental		= mod:NewAnnounce("WarningElemental", 3, 54850)
+local warningStone			= mod:NewAnnounce("WarningStone", 3, 54878)
 
-local specWarnPurpleShit	= mod:NewSpecialWarningGTFO(59451, nil, nil, nil, 1, 8)
+local specWarnPurpleShit	= mod:NewSpecialWarningMove(59451, nil, nil, nil, 1, 2)
 
 function mod:SPELL_CAST_START(args)
 	if args.spellId == 54850 then
@@ -26,9 +25,9 @@ function mod:SPELL_CAST_START(args)
 	end
 end
 
-function mod:SPELL_PERIODIC_DAMAGE(_, _, _, destGUID, _, _, spellId, spellName)
+function mod:SPELL_PERIODIC_DAMAGE(_, _, _, destGUID, _, _, spellId)
 	if spellId == 59451 and destGUID == UnitGUID("player") and self:AntiSpam(2, 1) and not self:IsTrivial() then
-		specWarnPurpleShit:Show(spellName)
-		specWarnPurpleShit:Play("watchfeet")
+		specWarnPurpleShit:Show()
+		specWarnPurpleShit:Play("runaway")
 	end
 end

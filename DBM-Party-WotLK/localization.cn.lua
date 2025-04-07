@@ -178,10 +178,6 @@ L:SetGeneralLocalization({
 	name = "托尔戈"
 })
 
-L:SetMiscLocalization({
-	YellExplosion = "要爆炸啦！"
-})
-
 --------------------------
 --  Novos the Summoner  --
 --------------------------
@@ -311,7 +307,7 @@ L:SetGeneralLocalization({
 --------------------------
 --  General Bjarngrim  --
 -------------------------
-L = DBM:GetModLocalization("Bjarngrin")
+L = DBM:GetModLocalization("Gjarngrin")
 
 L:SetGeneralLocalization({
 	name = "比亚格里将军"
@@ -338,7 +334,7 @@ L:SetGeneralLocalization({
 --------------
 --  Loken  --
 --------------
-L = DBM:GetModLocalization("Loken")
+L = DBM:GetModLocalization("Kronus")
 
 L:SetGeneralLocalization({
 	name = "洛肯"
@@ -901,7 +897,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LichKingEvent")
 
 L:SetGeneralLocalization({
-	name = "逃离阿尔萨斯"
+	name = "逃离巫妖王事件"
 })
 
 L:SetTimerLocalization({
@@ -909,7 +905,6 @@ L:SetTimerLocalization({
 })
 
 L:SetMiscLocalization({
-	ArthasYellKill	= "开火！开火！",
 	Ghoul = "狂怒食尸鬼",		--creature id 36940. Not sure how to use these in function above to simplify locals though. :\
 	Abom = "笨拙憎恶体",		--creature id 37069
 	WitchDoctor = "复活的巫医",	--creature id 36941

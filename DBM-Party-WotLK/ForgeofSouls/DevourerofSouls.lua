@@ -1,15 +1,15 @@
 local mod	= DBM:NewMod("DevourerofSouls", "DBM-Party-WotLK", 14)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20220518110528")
+mod:SetRevision(("$Revision: 3726 $"):sub(12, -3))
 mod:SetCreatureID(36502)
 
 mod:RegisterCombat("combat")
 
-mod:RegisterEventsInCombat(
-	"SPELL_CAST_START 68982 70322 68820 68939 68899 70324",
-	"SPELL_AURA_APPLIED 69051 68939",
-	"SPELL_AURA_REMOVED 69051"
+mod:RegisterEvents(
+	"SPELL_CAST_START",
+	"SPELL_AURA_APPLIED",
+	"SPELL_AURA_REMOVED"
 )
 
 local warnUnleashedSouls		= mod:NewSpellAnnounce(68939, 3)

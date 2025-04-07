@@ -1,43 +1,37 @@
 local mod	= DBM:NewMod("Supremus", "DBM-BlackTemple")
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20230108174447")
+mod:SetRevision(("$Revision: 7007 $"):sub(12, -3))
 mod:SetCreatureID(22898)
+
 mod:SetModelID(21145)
 mod:SetUsedIcons(8)
-mod:SetHotfixNoticeRev(20230108000000)
-mod:SetMinSyncRevision(20230108000000)
 
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"CHAT_MSG_RAID_BOSS_WHISPER"
+	"SPELL_AURA_APPLIED 41951",
+	"RAID_BOSS_EMOTE"
 )
 
 --TODO, see if CLEU method is reliable enough to scrap scan method. scan method may still have been faster.
-
--- General
 local warnPhase			= mod:NewAnnounce("WarnPhase", 4, 42052)
+local warnFixate		= mod:NewTargetNoFilterAnnounce(41951, 3)
+
+local specWarnMolten	= mod:NewSpecialWarningMove(40265, nil, nil, nil, 1, 2)
+local specWarnVolcano	= mod:NewSpecialWarningMove(42052, nil, nil, nil, 1, 2)
+local specWarnFixate	= mod:NewSpecialWarningRun(41951, nil, nil, nil, 4, 2)
 
 local timerPhase		= mod:NewTimer(60, "TimerPhase", 42052, nil, nil, 6)
-local berserkTimer		= mod:NewBerserkTimer(600)
 
--- Stage One: Supremus
-mod:AddTimerLine(DBM_CORE_L.SCENARIO_STAGE:format(1)..": "..L.name)
-local specWarnMolten	= mod:NewSpecialWarningMove(40265, nil, nil, nil, 1, 2)
-
--- Stage Two: Pursuit
-mod:AddTimerLine(DBM_CORE_L.SCENARIO_STAGE:format(2)..": "..DBM:GetSpellInfo(68987))
-local warnFixate		= mod:NewTargetNoFilterAnnounce(41295, 3)
-
-local specWarnVolcano	= mod:NewSpecialWarningMove(42052, nil, nil, nil, 1, 2)
-local specWarnFixate	= mod:NewSpecialWarningRun(41295, nil, nil, nil, 4, 2)
+local berserkTimer		= mod:NewBerserkTimer(900)
 
 mod:AddBoolOption("KiteIcon", true)
 
 --mod.vb.phase2 = false
 mod.vb.lastTarget = "None"
 
+--[[
 local function ScanTarget(self)
 	local target, uId = self:GetBossTarget(22898)
 	if target then
@@ -56,9 +50,9 @@ local function ScanTarget(self)
 		end
 	end
 end
+--]]
 
 function mod:OnCombatStart(delay)
-	self:SetStage(1)
 	berserkTimer:Start(-delay)
 	timerPhase:Start(-delay, L.Kite)
 	self.vb.lastTarget = "None"
@@ -77,6 +71,24 @@ function mod:OnCombatEnd()
 	end
 end
 
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 41951 then
+		if self.vb.lastTarget ~= args.destName then
+			self.vb.lastTarget = args.destName
+			if args:IsPlayer() and not self:IsTrivial() then
+				specWarnFixate:Show()
+				specWarnFixate:Play("justrun")
+				specWarnFixate:ScheduleVoice(1, "keepmove")
+			else
+				warnFixate:Show(args.destName)
+			end
+			if self.Options.KiteIcon then
+				self:SetIcon(args.destName, 8)
+			end
+		end
+	end
+end
+
 function mod:SPELL_DAMAGE(_, _, _, destGUID, _, _, spellId)
 	if spellId == 40265 and destGUID == UnitGUID("player") and self:AntiSpam(4, 1) and not self:IsTrivial() then
 		specWarnMolten:Show()
@@ -88,13 +100,12 @@ function mod:SPELL_DAMAGE(_, _, _, destGUID, _, _, spellId)
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE
 
-function mod:CHAT_MSG_RAID_BOSS_WHISPER(msg)
+function mod:RAID_BOSS_EMOTE(msg)
 	if msg == L.PhaseKite or msg:find(L.PhaseKite) then
-		self:SetStage(2)
 		warnPhase:Show(L.Kite)
 		timerPhase:Start(L.Tank)
-		self:Unschedule(ScanTarget)
-		self:Schedule(4, ScanTarget, self)
+		--self:Unschedule(ScanTarget)
+		--self:Schedule(4, ScanTarget, self)
 		if self.vb.lastTarget ~= "None" then
 			self:SetIcon(self.vb.lastTarget, 0)
 		end
@@ -105,15 +116,14 @@ function mod:CHAT_MSG_RAID_BOSS_WHISPER(msg)
 			specWarnFixate:Play("justrun")
 		end
 	elseif msg == L.PhaseTank or msg:find(L.PhaseTank) then
-		self:SetStage(1)
 		warnPhase:Show(L.Tank)
 		timerPhase:Start(L.Kite)
-		self:Unschedule(ScanTarget)
+		--self:Unschedule(ScanTarget)
 		if self.vb.lastTarget ~= "None" then
 			self:SetIcon(self.vb.lastTarget, 0)
 		end
-	elseif msg == L.ChangeTarget or msg:find(L.ChangeTarget) then
-		self:Unschedule(ScanTarget)
-		self:Schedule(0.5, ScanTarget, self)
+	--elseif msg == L.ChangeTarget or msg:find(L.ChangeTarget) then
+		--self:Unschedule(ScanTarget)
+		--self:Schedule(0.5, ScanTarget, self)
 	end
 end

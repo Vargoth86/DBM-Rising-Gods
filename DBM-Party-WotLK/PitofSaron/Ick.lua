@@ -1,19 +1,19 @@
 local mod	= DBM:NewMod("Ick", "DBM-Party-WotLK", 15)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20220823234921")
+mod:SetRevision(("$Revision: 4342 $"):sub(12, -3))
 mod:SetCreatureID(36476)
 mod:SetUsedIcons(8)
 
 mod:RegisterCombat("combat")
 
-mod:RegisterEventsInCombat(
-	"SPELL_CAST_START 68987 68989 70434 69012",
-	"SPELL_AURA_APPLIED 69029 70850",
-	"SPELL_AURA_REMOVED 69029 70850",
-	"SPELL_PERIODIC_DAMAGE 69024 70436",
-	"SPELL_PERIODIC_MISSED 69024 70436",
-	"UNIT_AURA_UNFILTERED"
+mod:RegisterEvents(
+	"SPELL_CAST_START",
+	"SPELL_AURA_APPLIED",
+	"SPELL_AURA_REMOVED",
+	"SPELL_PERIODIC_DAMAGE",
+	"SPELL_PERIODIC_MISSED",
+	"UNIT_AURA"
 )
 
 local warnPursuitCast			= mod:NewCastAnnounce(68987, 3)
@@ -25,19 +25,18 @@ local specWarnPursuit			= mod:NewSpecialWarningRun(68987, nil, nil, 2, 4, 2)
 local specWarnPoisonNova		= mod:NewSpecialWarningRun(68989, "Melee", nil, 2, 4, 2)
 
 local timerSpecialCD			= mod:NewCDSpecialTimer(20)--Every 20-22 seconds. In rare cases he skips a special though and goes 40 seconds. unsure of cause
-local timerPursuitCast			= mod:NewCastTimer(5, 68987, nil, nil, nil, 3)
-local timerPursuitConfusion		= mod:NewBuffActiveTimer(12, 69029, nil, nil, nil, 5)
+local timerPursuitCast			= mod:NewCastTimer(5, 68987)
+local timerPursuitConfusion		= mod:NewBuffActiveTimer(12, 69029)
 local timerPoisonNova			= mod:NewCastTimer(5, 68989, nil, "Melee", 2, 2)
 
 mod:AddSetIconOption("SetIconOnPursuitTarget", 68987, true, false, {8})
-mod:GroupSpells(68987, 69029)
 
 local pursuit = DBM:GetSpellInfo(68987)
 local pursuitTable = {}
 
 function mod:OnCombatStart(delay)
 	table.wipe(pursuitTable)
-	timerSpecialCD:Start(-delay)
+	timerSpecialCD:Start()
 end
 
 function mod:SPELL_CAST_START(args)
@@ -64,7 +63,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(69029, 70850) then					-- Pursuit Confusion
+	if args.spellId == 69029 then					-- Pursuit Confusion
 		timerPursuitConfusion:Cancel()
 	end
 end
@@ -77,7 +76,7 @@ function mod:SPELL_PERIODIC_DAMAGE(_, _, _, destGUID, _, _, spellId)
 end
 mod.SPELL_PERIODIC_MISSED = mod.SPELL_PERIODIC_DAMAGE
 
-function mod:UNIT_AURA_UNFILTERED(uId)
+function mod:UNIT_AURA(uId)
 	local isPursuitDebuff = DBM:UnitDebuff(uId, pursuit)
 	local name = DBM:GetUnitFullName(uId)
 	if not isPursuitDebuff and pursuitTable[name] then

@@ -175,10 +175,6 @@ L:SetGeneralLocalization({
 	name = "血角食人妖"
 })
 
-L:SetMiscLocalization({
-	YellExplosion = "屍體要爆炸啦!"
-})
-
 --------------------------
 --  Novos the Summoner  --
 --------------------------
@@ -308,7 +304,7 @@ L:SetGeneralLocalization({
 --------------------------
 --  General Bjarngrim  --
 -------------------------
-L = DBM:GetModLocalization("Bjarngrin")
+L = DBM:GetModLocalization("Gjarngrin")
 
 L:SetGeneralLocalization({
 	name = "畢亞格林將軍"
@@ -335,7 +331,7 @@ L:SetGeneralLocalization({
 -------------
 --  Loken  --
 -------------
-L = DBM:GetModLocalization("Loken")
+L = DBM:GetModLocalization("Kronus")
 
 L:SetGeneralLocalization({
 	name = "洛肯"
@@ -901,7 +897,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LichKingEvent")
 
 L:SetGeneralLocalization({
-	name = "逃離阿薩斯"
+	name = "逃離巫妖王事件"
 })
 
 L:SetTimerLocalization({
@@ -913,7 +909,6 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	ArthasYellKill	= "開火!開火!",
 	Ghoul			= "狂怒食屍鬼",
 	Abom			= "笨拙憎惡體",
 	WitchDoctor		= "復活的巫醫",

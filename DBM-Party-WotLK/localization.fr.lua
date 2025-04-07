@@ -137,7 +137,7 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerWaveIn		=	"Prochaine vague (6)",
+	TimerWaveIn		= 	"Prochaine vague (6)",
 })
 
 L:SetOptionLocalization({
@@ -175,10 +175,6 @@ L = DBM:GetModLocalization("Trollgore")
 
 L:SetGeneralLocalization({
 	name = "Trollétripe"
-})
-
-L:SetMiscLocalization({
-	YellExplosion = "Cadavre fait boum !"
 })
 
 ------------------------
@@ -311,7 +307,7 @@ L:SetGeneralLocalization({
 --------------------------
 --  General Bjarngrim  --
 -------------------------
-L = DBM:GetModLocalization("Bjarngrin")
+L = DBM:GetModLocalization("Gjarngrin")
 
 L:SetGeneralLocalization({
 	name = "Général Bjarngrim"
@@ -338,7 +334,7 @@ L:SetGeneralLocalization({
 ------------
 -- Loken --
 ------------
-L = DBM:GetModLocalization("Loken")
+L = DBM:GetModLocalization("Kronus")
 
 L:SetGeneralLocalization({
 	name = "Loken"
@@ -392,7 +388,7 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	WarningPhase	= optionWarning:format("Phase #"),
-	timerEvent		= "Montrer le timer de l'event"
+	timerEvent      = "Montrer le timer de l'event"
 })
 
 L:SetMiscLocalization({
@@ -800,7 +796,7 @@ L:SetGeneralLocalization({
 })
 
 L:SetOptionLocalization({
-	AchievementCheck	= "Annoncer les avertissements de réussite « Ne va pas à onze » pour faire la fête"
+	SetIconOnSaroniteRockTarget	= "Met une icône sur la cible du Rocher de Saronite"
 })
 
 L:SetMiscLocalization({
@@ -901,7 +897,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization("LichKingEvent")
 
 L:SetGeneralLocalization({
-	name = "Échapper à Arthas"
+	name = "Epreuve du Roi-Liche"
 })
 
 L:SetTimerLocalization({
@@ -913,7 +909,6 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	ArthasYellKill	= "FEU ! FEU !",
 	Ghoul			= "Raging Ghoul",			--creature id 36940. Not sure how to use these in function above to simplify locals though. :\
 	Abom			= "Lumbering Abomination",	--creature id 37069
 	WitchDoctor		= "Risen Witch Doctor",		--creature id 36941
