@@ -7,7 +7,7 @@ L.MainFrame	= "Deadly Boss Mods"
 
 L.TranslationByPrefix		= "向后移植 "
 L.TranslationBy 			= "Barsoom, Bunny67, Zidras"
-L.Website					= "拜訪討論/支援論壇:|cFF73C2FBhttps://discord.gg/CyVWDWS|r."
+L.Website					= "拜訪討論/支援論壇:|cFF73C2FBhttps://discord.gg/RH7ZE6e6rH|r."
 L.WebsiteButton				= "GitHub"
 
 L.OTabBosses	            = "模組"
