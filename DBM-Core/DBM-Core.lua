@@ -3908,7 +3908,7 @@ do
 							else
 								DBM:AddMsg(L.UPDATEREMINDER_HEADER:match("([^\n]*)"))
 								DBM:AddMsg(L.UPDATEREMINDER_HEADER:match("\n(.*)"):format(displayVersion, revision))
-								DBM:AddMsg(("|HDBM:update:%s:%s|h|cff3588ff[https://github.com/Zidras/DBM-Warmane]"):format(displayVersion, revision))
+								DBM:AddMsg(("|HDBM:update:%s:%s|h|cff3588ff[https://github.com/Vargoth86/DBM-Rising-Gods]"):format(displayVersion, revision))
 							end
 						end
 					end
