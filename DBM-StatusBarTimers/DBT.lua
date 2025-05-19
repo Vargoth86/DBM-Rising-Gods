@@ -55,6 +55,31 @@ local options
 local setupHandlers
 local applyFailed = false
 local barIsAnimating = false
+
+local colorVariables = {
+	[0] = "",--Generic
+	[1] = "A",--Add
+	[2] = "AE",--AoE
+	[3] = "D",--Debuff/Targeted attack
+	[4] = "I",--Interrupt
+	[5] = "R",--Role
+	[6] = "P",--Phase
+	[7] = "UI",--Important 1
+}
+
+function DBT:GetColorForType(colorType)
+	local colorVar = colorVariables[colorType]
+	if not colorVar then return nil end
+
+	local r = DBT.Options.default["StartColor"..colorVar.."R"]
+	local g = DBT.Options.default["StartColor"..colorVar.."G"]
+	local b = DBT.Options.default["StartColor"..colorVar.."B"]
+
+	if not (r and g and b) then return nil end
+
+	return r, g, b
+end
+
 local function stringFromTimer(t)
 	if t <= DBM.Bars:GetOption("TDecimal") then
 		return ("%.1f"):format(t)
