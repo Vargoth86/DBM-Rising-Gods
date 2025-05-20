@@ -67,19 +67,6 @@ local colorVariables = {
 	[7] = "UI",--Important 1
 }
 
-function DBT:GetColorForType(colorType)
-	local colorVar = colorVariables[colorType]
-	if not colorVar then return nil end
-
-	local r = DBT.Options.default["StartColor"..colorVar.."R"]
-	local g = DBT.Options.default["StartColor"..colorVar.."G"]
-	local b = DBT.Options.default["StartColor"..colorVar.."B"]
-
-	if not (r and g and b) then return nil end
-
-	return r, g, b
-end
-
 local function stringFromTimer(t)
 	if t <= DBM.Bars:GetOption("TDecimal") then
 		return ("%.1f"):format(t)
@@ -502,6 +489,16 @@ options = {
 	},
 }
 
+function DBT:GetColorForType(colorType)
+	local colorVar = colorVariables[colorType]
+	if not colorVar then return nil end
+
+	local r = options["StartColor"..colorVar.."R"].default
+	local g = options["StartColor"..colorVar.."G"].default
+	local b = options["StartColor"..colorVar.."B"].default
+
+	return r, g, b
+end
 
 --------------------------
 --  Double Linked List  --
