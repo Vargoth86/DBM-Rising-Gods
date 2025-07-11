@@ -5258,6 +5258,7 @@ do
 					end
 					sendWhisper(k, msg)
 				end
+				fireEvent("wipe", mod) -- Backwards compatibility
 				fireEvent("DBM_Wipe", mod)
 			elseif not wipe and mod.stats and not mod.noStatistics then
 				mod.lastKillTime = GetTime()
@@ -5312,6 +5313,7 @@ do
 				if self.Options.ReportSkada and self:GetRaidRank() > 0 and Skada and Skada.revisited then
 					Skada:Report("RAID", "preset", nil, nil, 25)
 				end
+				fireEvent("kill", mod) -- Backwards compatibility
 				fireEvent("DBM_Kill", mod)
 				if savedDifficulty == "worldboss" and mod.WBEsync then
 					if lastBossDefeat[modId..playerRealm] and (GetTime() - lastBossDefeat[modId..playerRealm] < 30) then return end--Someone else synced in last 10 seconds so don't send out another sync to avoid needless sync spam.
